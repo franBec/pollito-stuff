@@ -2,7 +2,7 @@ import FadeIn from '../_utils/fadeIn'
 import Item from './item'
 import PaginateNavbar from '../_utils/pagination/paginateNavbar'
 
-const List = ({ data, crudUpdate, crudDelete, handleClick }) => {
+const List = ({ data, crudUpdate, crudDelete, paginateClickHandler }) => {
   return (
     <>
       <div>
@@ -19,7 +19,7 @@ const List = ({ data, crudUpdate, crudDelete, handleClick }) => {
         <PaginateNavbar
           currentPage={data.page}
           totalPages={data.totalPages}
-          handleClick={handleClick}
+          handleClick={paginateClickHandler}
         />
       </div>
     </>

@@ -7,6 +7,7 @@ import ItemModal from '../../components/anotherTaskApp/itemModal'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
+import OrderByCreated from '../../components/_utils/pagination/orderByCreated'
 
 const index = () => {
   /*
@@ -15,7 +16,7 @@ const index = () => {
   const [showModal, setShowModal] = useState(false)
 
   /*
-   * Page number management
+   * pagination management
    */
   const [pageNumber, updatePageNumber] = useState(1)
   const shouldUpdatePageNumber = (number) => {
@@ -23,6 +24,8 @@ const index = () => {
       updatePageNumber(number)
     }
   }
+
+  const [sort, updateSort] = useState('asc')
 
   /*
    * SWAL: handle errors
@@ -74,17 +77,36 @@ const index = () => {
         )
       }
 
-      if (data.docs.length === data.limit) {
-        if (data.totalDocs % data.limit === 0) {
-          updatePageNumber(data.totalPages + 1)
+      //we succeed! now we need to manage the pagination stuff
+      //if we updatePageNumber to a number != pageNumber , it triggers useSWR
+
+      if (sort === 'asc') {
+        /*
+          fits in currentPage?
+            YES: revalidate this page. Can't trigger with updatePageNumber, use mutate
+            NO:
+              fits in last page?
+                YES: validate last page
+                NO: validate last page + 1
+        */
+
+        if (data.docs.length !== data.limit) {
+          mutate(
+            `/api/anotherTaskApp?page=${pageNumber}&limit=5&orderBy=createdAt&sort=${sort}`
+          )
         } else {
-          updatePageNumber(data.totalPages)
+          if (data.totalDocs % data.limit === 0) {
+            updatePageNumber(data.totalPages + 1)
+          } else {
+            updatePageNumber(data.totalPages)
+          }
         }
       } else {
-        const newTask = await res.json()
-        const newDocs = [...data.docs, newTask.data]
-        const newData = { ...data, docs: newDocs }
-        await mutate(newData, false)
+        //desc works like a stack, you can only add on top, you always validate to first page
+        //Use mutate cause if pageNumber == 1, updatePageNumber won't trigger useSWR
+        mutate(
+          `/api/anotherTaskApp?page=1&limit=5&orderBy=createdAt&sort=${sort}`
+        )
       }
     } catch (error) {
       swal_handleError(error.message)
@@ -119,7 +141,7 @@ const index = () => {
     also this does the rol of an onMount or useEffect when landing in the page
   */
   const { data, error, mutate } = useSWR(
-    `/api/anotherTaskApp?page=${pageNumber}&limit=5`,
+    `/api/anotherTaskApp?page=${pageNumber}&limit=5&orderBy=createdAt&sort=${sort}`,
     crudReadPage
   )
 
@@ -219,13 +241,14 @@ const index = () => {
         <LoadingAnimation />
       ) : (
         <>
-          <div>
+          <div className="flex flex-row items-end justify-between">
             <button
               className="rounded bg-[#555D8E] py-2 px-4 font-semibold text-white hover:bg-blue-500"
               onClick={() => setShowModal(true)}
             >
               Add new!
             </button>
+            <OrderByCreated currentSort={sort} handleClick={updateSort} />
           </div>
           {data.docs?.length === 0 ? (
             <div className="container mx-auto mb-8 w-fit bg-white bg-opacity-10 py-2 px-4 text-lg md:py-4 md:px-10 md:text-2xl lg:py-6 lg:px-12 lg:text-3xl">
@@ -236,7 +259,7 @@ const index = () => {
               data={data}
               crudUpdate={crudUpdate}
               crudDelete={crudDelete}
-              handleClick={shouldUpdatePageNumber}
+              paginateClickHandler={shouldUpdatePageNumber}
             />
           )}
           {showModal && (

@@ -24,10 +24,13 @@ export default async function handler(req, res) {
       try {
         const page = query.page ?? 1      //defaults to first page
         const limit = query.limit ?? 5    //defaults to 5 per page
-        const sort = query.sort ?? ''
 
-        //defaults to createdAt asc
-        const sortObject = {[query.orderBy ?? 'createdAt']:sort ==='desc' ? -1 : 1}
+        //defaults to createdAt asc        
+        const orderBy = query.orderBy ?? 'createdAt'
+        const sort = query.sort ?? ''
+        const sortObject = {[orderBy]:sort ==='desc' ? -1 : 1}
+
+        console.log(query)
 
         const data = await Task.paginate({}, {limit, page, sort:sortObject})
         if (!data) {
