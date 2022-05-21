@@ -13,14 +13,14 @@ const Footer = () => {
         >
           <a>AnotherTaskApp</a>
         </Link>
-        {/*{' | '}
+        {' | '}
         <Link
           href="/randomStringGenerator"
           className="mx-3 duration-150 hover:opacity-80"
         >
           <a>Random String Generator</a>
         </Link>
-        {' | '}
+        {/*{' | '}
         <Link
           href="/randomPuntanoGenerator"
           className="mx-3 duration-150 hover:opacity-80"

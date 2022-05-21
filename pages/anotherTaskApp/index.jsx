@@ -226,11 +226,11 @@ const index = () => {
   return (
     <Layout
       headTittle="Pollito's stuff | Another Task App"
-      title={'Another Task App'}
+      title={'Another Task App ❌✅'}
       pretitle={'You are using...'}
       descriptionRows={[
         'Yes, another task managing app',
-        'with CRUD operations in MongoDB & mongoose',
+        'with CRUD operations and pagination in MongoDB & mongoose',
       ]}
       signature="Pollito, while making the millionth task managing app in the internet"
       displayHomeButton={true}

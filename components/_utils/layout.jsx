@@ -20,9 +20,12 @@ const Layout = ({
         <title>{headTittle}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {/* Toaster shows pop up notifications, is kinda useful to say 'hey this is loading' */}
       <Toaster position="top-center" reverseOrder={true} />
+
       <div className="flex min-h-screen flex-col text-white">
-        <main className="container mx-auto flex-1 px-6 pt-16 text-left">
+        <main className="container mx-auto flex-1 px-4 pt-8 text-left">
           <Intro
             title={title}
             pretitle={pretitle}
