@@ -20,14 +20,14 @@ const Footer = () => {
         >
           <a>Random String Generator</a>
         </Link>
-        {/*{' | '}
+        {' | '}
         <Link
           href="/randomPuntanoGenerator"
           className="mx-3 duration-150 hover:opacity-80"
         >
           <a>Random Puntano Generator</a>
         </Link>
-        {' | '}
+        {/*{' | '}
         <Link href="/about" className="mx-3 duration-150 hover:opacity-80">
           <a>About</a>
         </Link> */}
