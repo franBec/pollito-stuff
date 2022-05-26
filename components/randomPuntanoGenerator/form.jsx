@@ -75,8 +75,8 @@ const Form = ({ makeNewPuntano }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex items-center">
-        <div className="mx-5">
+      <div className="flex items-end">
+        <div className="mx-2">
           <label className="block text-xl">Gender</label>
           <Select
             id="selectGender"
@@ -91,7 +91,7 @@ const Form = ({ makeNewPuntano }) => {
             }}
           />
         </div>
-        <div className="">
+        <div className="mx-2">
           <label className="block">
             Age{' '}
             {ageError && (
@@ -112,13 +112,13 @@ const Form = ({ makeNewPuntano }) => {
             className="m-1.25 py-0.75 px-1.75 h-10 text-base text-black"
           ></input>
         </div>
-      </div>
-      <div className="flex justify-center">
-        <input
-          type="submit"
-          value="Generate!"
-          className="rounded bg-[#555D8E] py-2 px-4 font-semibold text-white hover:bg-blue-500"
-        ></input>
+        <div className="mx-2">
+          <input
+            type="submit"
+            value="Generate!"
+            className="rounded bg-[#555D8E] py-2 px-4 font-semibold text-white hover:bg-blue-500"
+          ></input>
+        </div>
       </div>
     </form>
   )

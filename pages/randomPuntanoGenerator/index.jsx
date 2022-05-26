@@ -1,5 +1,4 @@
 import Layout from '../../components/_utils/layout'
-import Swal from 'sweetalert2'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
 import DisplayError from '../../components/_utils/displayError'
 import Form from '../../components/randomPuntanoGenerator/form'
@@ -18,7 +17,6 @@ const RandomPuntanoGenerator = () => {
     age comes from form and needs to go to puntano, a brother component
     so I create a state here to update it on every sumbmit
    */
-
   const [age, setAge] = useState(18)
 
   /*
