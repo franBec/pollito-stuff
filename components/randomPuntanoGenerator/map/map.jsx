@@ -9,6 +9,7 @@ import {
 } from '@react-google-maps/api'
 import { useState, useCallback } from 'react'
 import styles from './styles'
+import polygonGeoJson from './sanLuisGeoJson'
 
 const containerStyle = {
   width: '400px',
@@ -21,7 +22,7 @@ const options = {
   zoomControl: true, //leave the zoom stuff available
 }
 
-const Map = ({ address, markerPosition, polygonGeoJson }) => {
+const Map = ({ markerPosition }) => {
   const [map, setMap] = useState(null)
   const [zones, setZones] = useState([])
 
@@ -60,11 +61,10 @@ const Map = ({ address, markerPosition, polygonGeoJson }) => {
         <LoadingAnimation />
       ) : (
         <>
-          <p>Address: {address}</p>
           <GoogleMap
             mapContainerStyle={containerStyle}
             defaultCenter={markerPosition}
-            zoom={12}
+            zoom={15}
             onLoad={onLoad}
             onUnmount={onUnmount}
             options={options}

@@ -6,6 +6,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@react-google-maps/api": "^2.11.8",
     "@turf/bbox": "^6.5.0",
     "@turf/random": "^6.5.0",
@@ -15,6 +18,7 @@
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-geocode": "^0.2.3",
     "react-hot-toast": "^2.2.0",
     "react-icons": "^4.3.1",
     "react-loading-spin": "^2.1.9",

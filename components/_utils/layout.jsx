@@ -35,9 +35,9 @@ const Layout = ({
           <FadeIn delay={500} duration={2000}>
             {children}
           </FadeIn>
-          {displayHomeButton && <HomeButton />}
         </main>
-        <Footer />
+        {displayHomeButton && <HomeButton />}
+        {/* <Footer /> */}
       </div>
     </>
   )

@@ -1,4 +1,10 @@
 import Layout from '../components/_utils/layout'
+import Menu from '../components/mainMenu/menu'
+
+//https://stackoverflow.com/questions/56334381/why-my-font-awesome-icons-are-being-displayed-big-at-first-and-then-updated-to-t
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
+config.autoAddCss = false /* eslint-disable import/first */
 
 const Home = () => {
   return (
@@ -12,7 +18,9 @@ const Home = () => {
       ]}
       signature="This is home - Cavetown 🎵"
       displayHomeButton={false}
-    ></Layout>
+    >
+      <Menu />
+    </Layout>
   )
 }
 

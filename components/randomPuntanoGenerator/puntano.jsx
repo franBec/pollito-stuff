@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react'
 
-import DisplayError from '../_utils/displayError'
-
 import randomBirthday from '../../lib/funcs/randomBirthday'
 import randomDNI from '../../lib/funcs/randomDNI'
 import getCUIT from '../../lib/funcs/getCUIT'
 import castDateTo_dd_mm_yyyy from '../../lib/funcs/castDateTo_dd_mm_yyyy'
 
-import Map from './map/map'
-import Mapnt from './map/mapnt'
-import sanLuisGeoJson from './map/sanLuisGeoJson'
 import randomAddress from '../../lib/funcs/randomAddress'
 
+//https://www.npmjs.com/package/yn
 import yn from 'yn'
+
+import PuntanoInfo from './puntanoInfo'
+
+import DisplayError from '../_utils/displayError'
+
+import Map from './map/map'
+import Mapnt from './map/mapnt'
+
 const simulateAddress = yn(
-  process.env.NEXT_PUBLIC_RandomPuntanoGeneratorUseMaps
+  process.env.NEXT_PUBLIC_RandomPuntanoGenerator_UseMaps
 )
 
 const Puntano = ({ firstName, lastName, gender, age, triggerUseEffect }) => {
@@ -54,50 +58,55 @@ const Puntano = ({ firstName, lastName, gender, age, triggerUseEffect }) => {
     -create a random point that is located in Ciudad de San Luis
   */
   useEffect(() => {
-    //age related stuff
-    const ageRelatedStuff = makeAgeRelatedStuff(age)
-    setBirthday(castDateTo_dd_mm_yyyy(ageRelatedStuff.birthday))
-    setDni(ageRelatedStuff.dni)
-    setCuit(ageRelatedStuff.cuit)
+    const fetchData = async () => {
+      //age related stuff
+      const ageRelatedStuff = makeAgeRelatedStuff(age)
+      setBirthday(castDateTo_dd_mm_yyyy(ageRelatedStuff.birthday))
+      setDni(ageRelatedStuff.dni)
+      setCuit(ageRelatedStuff.cuit)
 
-    //random address stuff
-    if (simulateAddress) {
-      randomAddress(sanLuisGeoJson)
-        .then((data) => {
-          console.log(data)
-          setAddress(data.formatted_address.split(',')[0]) //just the street and number
-          setMarker(data.geometry.location)
-        })
-        .catch((error) => setAddressError(error.message))
+      //random address stuff
+      if (simulateAddress) {
+        try {
+          const data = await randomAddress()
+          setAddress(data.results[0].formatted_address.split(',')[0]) //just the street and number
+          setMarker(data.results[0].geometry.location)
+        } catch (error) {
+          setAddressError(error.toString())
+        }
+      }
     }
+    fetchData()
   }, [triggerUseEffect])
 
   return (
     <>
-      <div className="m-2">
-        <p>First Name: {firstName}</p>
-        <p>Last Name: {lastName}</p>
-        <p>
-          Gender:{' '}
-          {gender === 'M' ? 'Male' : gender === 'F' ? 'Female' : 'Indefinite'}
-        </p>
-        <p>Birthday: {birthday}</p>
-        <p>DNI: {dni}</p>
-        <p>CUIT: {cuit}</p>
-      </div>
-      {simulateAddress ? (
-        addressError ? (
-          <DisplayError errorMessage={addressError} />
-        ) : (
-          <Map
-            address={address}
-            markerPosition={marker}
-            polygonGeoJson={sanLuisGeoJson}
+      <div className="my-2">
+        <div className="mx-auto w-fit">
+          <PuntanoInfo k={'NAME'} v={firstName + ' ' + lastName} />
+          <PuntanoInfo
+            k={'GENDER'}
+            v={
+              gender === 'M' ? 'Male' : gender === 'F' ? 'Female' : 'Indefinite'
+            }
           />
-        )
-      ) : (
-        <Mapnt />
-      )}
+          <PuntanoInfo k={'BIRTHDAY'} v={birthday} />
+          <PuntanoInfo k={'DNI'} v={dni} />
+          <PuntanoInfo k={'CUIT'} v={cuit} />
+          {simulateAddress ? (
+            addressError ? (
+              <DisplayError errorMessage={addressError} />
+            ) : (
+              <>
+                <PuntanoInfo k={'ADDRESS'} v={address} />
+                <Map markerPosition={marker} />
+              </>
+            )
+          ) : (
+            <Mapnt />
+          )}
+        </div>
+      </div>
     </>
   )
 }
