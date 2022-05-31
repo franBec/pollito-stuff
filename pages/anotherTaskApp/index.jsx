@@ -234,6 +234,7 @@ const index = () => {
       ]}
       signature="Pollito, while making the millionth task managing app in the internet"
       displayHomeButton={true}
+      goTo="https://reactjsexample.com/tag/todo/"
     >
       {error ? (
         <DisplayError errorMessage={error} />

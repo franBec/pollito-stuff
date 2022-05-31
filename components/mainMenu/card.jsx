@@ -7,7 +7,7 @@ const Card = ({ icon, title, description, goTo }) => {
   return (
     <Link href={goTo}>
       <a>
-        <div className="max-w-xs overflow-hidden rounded-lg bg-white bg-opacity-50 shadow-lg hover:scale-105">
+        <div className="max-w-xs overflow-hidden rounded-lg bg-white bg-opacity-80 shadow-lg hover:scale-105">
           <div className="mt-2 flex items-center justify-center">
             <FontAwesomeIcon
               icon={icon}

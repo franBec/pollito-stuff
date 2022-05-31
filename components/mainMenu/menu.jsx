@@ -27,7 +27,7 @@ const Menu = () => {
         icon={faPersonCircleQuestion}
         title={'Random Puntano Generator'}
         description={'Create a random person from San Luis... just because'}
-        goTo={'/randomPutanoGenerator'}
+        goTo={'/randomPuntanoGenerator'}
       />{' '}
       <Card
         icon={faCircleInfo}

@@ -17,6 +17,7 @@ const Home = () => {
         "When I'm ready I will fly us out of here",
       ]}
       signature="This is home - Cavetown 🎵"
+      goTo="https://youtu.be/ZM_Gamwxvtc"
       displayHomeButton={false}
     >
       <Menu />

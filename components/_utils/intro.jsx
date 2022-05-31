@@ -1,5 +1,5 @@
 import FadeIn from './fadeIn'
-const Intro = ({ title, pretitle, descriptionRows, signature }) => {
+const Intro = ({ title, pretitle, descriptionRows, signature, goTo }) => {
   return (
     <>
       <FadeIn delay={0} duration={1500}>
@@ -10,15 +10,17 @@ const Intro = ({ title, pretitle, descriptionRows, signature }) => {
       </FadeIn>
 
       <FadeIn delay={500} duration={2000}>
-        <div className="mx-auto mb-4 w-fit bg-white bg-opacity-5 py-1 px-2 text-lg md:py-2 md:px-5 md:text-2xl lg:py-3 lg:px-6 lg:text-2xl">
-          {descriptionRows.map((it) => (
-            <p className="italic" key={it}>
-              {it}
-              <br />
-            </p>
-          ))}
-          <div className="text-right text-base italic">~{signature}</div>
-        </div>
+        <a href={goTo} target="_blank">
+          <div className="mx-auto mb-4 w-fit bg-slate-800 bg-opacity-50 py-1 px-2 text-lg md:py-2 md:px-5 md:text-2xl lg:py-3 lg:px-6 lg:text-2xl">
+            {descriptionRows.map((it) => (
+              <p className="italic" key={it}>
+                {it}
+                <br />
+              </p>
+            ))}
+            <div className="text-right text-base italic">~{signature}</div>
+          </div>
+        </a>
       </FadeIn>
     </>
   )

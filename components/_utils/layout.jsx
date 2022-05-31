@@ -12,6 +12,7 @@ const Layout = ({
   pretitle,
   descriptionRows,
   signature,
+  goTo,
   displayHomeButton,
 }) => {
   return (
@@ -31,6 +32,7 @@ const Layout = ({
             pretitle={pretitle}
             descriptionRows={descriptionRows}
             signature={signature}
+            goTo={goTo}
           />
           <FadeIn delay={500} duration={2000}>
             {children}

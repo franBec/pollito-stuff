@@ -101,6 +101,7 @@ const RandomStringGenerator = () => {
       ]}
       signature="Pollito, while overengineering a simple task"
       displayHomeButton={true}
+      goTo="https://en.wikipedia.org/wiki/Overengineering"
     >
       <Form
         generateRandomString={generateRandomString}

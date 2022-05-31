@@ -139,6 +139,7 @@ const RandomPuntanoGenerator = () => {
       descriptionRows={['Something/Someone from San Luis.']}
       signature="Pollito, a not puntano defining a puntano"
       displayHomeButton={true}
+      goTo="https://en.wikipedia.org/wiki/San_Luis,_Argentina"
     >
       <Form makeNewPuntano={makeNewPuntano} />
 
