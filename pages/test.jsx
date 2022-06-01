@@ -5,14 +5,13 @@ const Test = () => {
   return (
     <Layout
       headTittle="Pollito's stuff | Testing area"
-      title={'The dev testing area 🧪'}
-      pretitle={'You are viewing...'}
-      descriptionRows={[
+      navTitle={'The dev testing area 🧪'}
+      introDescriptionRows={[
         'Here I do quick test of functionality',
         'Before putting them in a proper place',
       ]}
-      signature="Pollito, while copying StackOverflow codes to check if it is what he's looking for"
-      displayHomeButton={true}
+      introSignature="Pollito, while copying StackOverflow codes to check if it is what he's looking for"
+      isThisHome={false}
     >
       <Accordion />
     </Layout>
