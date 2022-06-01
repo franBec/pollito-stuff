@@ -1,6 +1,11 @@
 import { useState } from 'react'
 
-const TextArea = ({ count, text, handleTextAreaOnChange, triggerLorem }) => {
+const TextArea = ({
+  count,
+  text,
+  handleTextAreaOnChange,
+  triggerAchievement,
+}) => {
   const [stack, updateStack] = useState([])
 
   const checkForLoremCombination = (e) => {
@@ -8,7 +13,7 @@ const TextArea = ({ count, text, handleTextAreaOnChange, triggerLorem }) => {
       JSON.stringify([e.code, stack[0]]) ===
       JSON.stringify(['Space', 'ControlLeft'])
     ) {
-      triggerLorem()
+      triggerAchievement()
     }
     updateStack([e.code, stack[0]])
   }
@@ -17,7 +22,7 @@ const TextArea = ({ count, text, handleTextAreaOnChange, triggerLorem }) => {
     <>
       <p className="py-2 text-xl font-medium">Text length: {count}</p>
       <textarea
-        className="h-48 w-full bg-black bg-opacity-10 text-lg font-medium"
+        className="h-60 w-full border border-white bg-black bg-opacity-20 p-2 text-lg font-medium"
         placeholder="You can also write stuff here!"
         onChange={(e) => handleTextAreaOnChange(e)}
         onKeyDown={(e) => checkForLoremCombination(e)}

@@ -10,15 +10,13 @@ const Home = () => {
   return (
     <Layout
       headTittle="Pollito's stuff | Home"
-      title={"Pollito's Stuff 🐤"}
-      pretitle={'Welcome to'}
-      descriptionRows={[
+      introDescriptionRows={[
         "I'm a little sick right now but I swear",
         "When I'm ready I will fly us out of here",
       ]}
-      signature="This is home - Cavetown 🎵"
-      goTo="https://youtu.be/ZM_Gamwxvtc"
-      displayHomeButton={false}
+      introSignature="This is home - Cavetown 🎵"
+      introHref="https://youtu.be/ZM_Gamwxvtc"
+      isThisHome={true}
     >
       <Menu />
     </Layout>

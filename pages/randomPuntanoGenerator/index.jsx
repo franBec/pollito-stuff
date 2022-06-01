@@ -134,30 +134,33 @@ const RandomPuntanoGenerator = () => {
   return (
     <Layout
       headTittle="Pollito's stuff | Random Puntano Generator"
-      title={'Random Puntano Generator 🦙'}
-      pretitle={'You are using...'}
-      descriptionRows={['Something/Someone from San Luis.']}
-      signature="Pollito, a not puntano defining a puntano"
-      displayHomeButton={true}
-      goTo="https://en.wikipedia.org/wiki/San_Luis,_Argentina"
+      navTitle={'Random Puntano Generator 🦙'}
+      introDescriptionRows={['Something/Someone from San Luis.']}
+      introSignature="Pollito, a not puntano defining a puntano"
+      isThisHome={false}
+      introHref="https://en.wikipedia.org/wiki/San_Luis,_Argentina"
     >
-      <Form makeNewPuntano={makeNewPuntano} />
-
-      {fn_error ? (
-        <DisplayError errorMessage={fn_error} />
-      ) : ln_error ? (
-        <DisplayError errorMessage={ln_error} />
-      ) : !fn_data || !ln_data ? (
-        <LoadingAnimation />
-      ) : (
-        <Puntano
-          firstName={fn_data[0].name}
-          lastName={ln_data[0].lastName}
-          gender={fn_data[0].gender}
-          age={age}
-          triggerUseEffect={fft} //the value itself doesn't matter, what matters is that oscilates
-        />
-      )}
+      <div className="container rounded-md bg-slate-800 bg-opacity-80 px-5 py-1">
+        <Form makeNewPuntano={makeNewPuntano} />
+        <div className="p-3">
+          <div className="w-full border border-slate-200"></div>
+        </div>
+        {fn_error ? (
+          <DisplayError errorMessage={fn_error} />
+        ) : ln_error ? (
+          <DisplayError errorMessage={ln_error} />
+        ) : !fn_data || !ln_data ? (
+          <LoadingAnimation />
+        ) : (
+          <Puntano
+            firstName={fn_data[0].name}
+            lastName={ln_data[0].lastName}
+            gender={fn_data[0].gender}
+            age={age}
+            triggerUseEffect={fft} //the value itself doesn't matter, what matters is that oscilates
+          />
+        )}
+      </div>
     </Layout>
   )
 }

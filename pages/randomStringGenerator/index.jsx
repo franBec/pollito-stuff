@@ -9,7 +9,7 @@ const RandomStringGenerator = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
   const martinFierro =
-    'Aquí me pongo a cantar Al compás de la vigüela, Que el hombre que lo desvela Una pena estraordinaria Como la ave solitaria Con el cantar se consuela.'
+    'Aquí me pongo a cantar\nAl compás de la vigüela\nQue el hombre que lo desvela\nUna pena estraordinaria\nComo la ave solitaria\nCon el cantar se consuela.'
 
   const [count, setCount] = useState(loremIpsum.length)
   const [text, setText] = useState(loremIpsum)
@@ -55,7 +55,7 @@ const RandomStringGenerator = () => {
     }
   }
 
-  const triggerLorem = () => {
+  const triggerAchievement = () => {
     if (
       text.localeCompare('lorem', undefined, { sensitivity: 'accent' }) === 0
     ) {
@@ -65,7 +65,7 @@ const RandomStringGenerator = () => {
         icon: '📖',
         style: {
           borderRadius: '10px',
-          background: '#333',
+          background: '#1e293b',
           color: '#fff',
         },
       })
@@ -82,7 +82,7 @@ const RandomStringGenerator = () => {
         icon: '🧉',
         style: {
           borderRadius: '10px',
-          background: '#333',
+          background: '#1e293b',
           color: '#fff',
         },
       })
@@ -92,32 +92,35 @@ const RandomStringGenerator = () => {
   return (
     <Layout
       headTittle="Pollito's stuff | Random String Generator"
-      title={'Random String Generator 🎲'}
-      pretitle={'You are using...'}
-      descriptionRows={[
+      navTitle={'Random String Generator 🎲'}
+      introDescriptionRows={[
         'In work, I usually need to test length of form textfields and databases columns',
         'So, why typing random stuff and counting in Sublime text',
         'When a page can do it for me?',
       ]}
-      signature="Pollito, while overengineering a simple task"
-      displayHomeButton={true}
-      goTo="https://en.wikipedia.org/wiki/Overengineering"
+      introSignature="Pollito, while overengineering a simple task"
+      isThisHome={false}
+      introHref="https://en.wikipedia.org/wiki/Overengineering"
     >
-      <Form
-        generateRandomString={generateRandomString}
-        allowedChars={allowedChars}
-        setAllowedChars={setAllowedChars}
-        lengthError={lengthError}
-        allowedLength={allowedLength}
-        handleLenghtInputOnChange={handleLenghtInputOnChange}
-      />
-
-      <TextArea
-        count={count}
-        text={text}
-        handleTextAreaOnChange={handleTextAreaOnChange}
-        triggerLorem={triggerLorem}
-      />
+      <div className="container rounded-md bg-slate-800 bg-opacity-80 px-5 py-1">
+        <Form
+          generateRandomString={generateRandomString}
+          allowedChars={allowedChars}
+          setAllowedChars={setAllowedChars}
+          lengthError={lengthError}
+          allowedLength={allowedLength}
+          handleLenghtInputOnChange={handleLenghtInputOnChange}
+        />
+        <div className="pt-3">
+          <div className="w-full border border-slate-200"></div>
+        </div>
+        <TextArea
+          count={count}
+          text={text}
+          handleTextAreaOnChange={handleTextAreaOnChange}
+          triggerAchievement={triggerAchievement}
+        />
+      </div>
     </Layout>
   )
 }

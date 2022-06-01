@@ -34,10 +34,10 @@ const Form = ({ data, crudCreate, crudUpdate, setShowModal, isNewItem }) => {
   }
 
   return (
-    <form className="p-6 text-slate-500" onSubmit={handleSubmit}>
+    <form className="p-6" onSubmit={handleSubmit}>
       <p className="text-lg">
         <label>
-          <b>Task</b>
+          Task
           {displayError && (
             <label className="italic text-red-500">
               {' '}
@@ -53,14 +53,12 @@ const Form = ({ data, crudCreate, crudUpdate, setShowModal, isNewItem }) => {
           onChange={(e) => handleChange(e)}
           required
           placeholder="Write a task..."
-          className="min-w-full resize-y rounded-md"
+          className="min-w-full resize-y rounded-md p-2 text-black"
           rows={2}
         />
       </p>
       <p className="my-4 text-lg  ">
-        <label>
-          <b>Description</b>
-        </label>
+        <label>Description</label>
         <br />
         <textarea
           type="text"
@@ -68,29 +66,30 @@ const Form = ({ data, crudCreate, crudUpdate, setShowModal, isNewItem }) => {
           value={form.description}
           onChange={(e) => handleChange(e)}
           placeholder="Add a description..."
-          className="min-w-full resize-y rounded-md"
+          className="min-w-full resize-y rounded-md p-2 text-black"
           rows={2}
         />
       </p>
       <p className="my-4 text-lg">
         <label>
-          <b>Reminder? </b>
+          Reminder?
           <input
             type="checkbox"
             name="reminder"
             checked={form.reminder}
             onChange={handleChange}
+            className="ml-2"
           />{' '}
           {form.reminder ? 'ON' : 'OFF'}
         </label>
       </p>
       <div className="py-2">
-        <div className="w-full border-t border-slate-500"></div>
+        <div className="w-full border-t border-slate-200"></div>
       </div>
       <input
         className={`${
-          displayError ? 'bg-slate-500' : 'bg-emerald-500'
-        } mx-36 cursor-pointer rounded  px-6 py-3 text-sm font-bold uppercase text-white shadow`}
+          displayError ? 'bg-slate-500' : 'bg-green-700 hover:bg-green-500'
+        } mx-36 cursor-pointer rounded px-6 py-3 text-sm font-bold uppercase`}
         type="submit"
         value="Save changes"
       ></input>

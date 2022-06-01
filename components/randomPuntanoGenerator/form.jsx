@@ -117,7 +117,7 @@ const Form = ({ makeNewPuntano }) => {
             <input
               type="submit"
               value="Generate!"
-              className="rounded bg-[#555D8E] py-2 px-4 font-semibold text-white hover:bg-blue-500"
+              className="rounded bg-sky-900 py-2 px-4 font-semibold hover:bg-sky-700"
             ></input>
           </div>
         </div>

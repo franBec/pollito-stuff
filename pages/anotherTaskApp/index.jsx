@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
 import OrderByCreated from '../../components/_utils/pagination/orderByCreated'
+import { SiAddthis } from 'react-icons/si'
 
 const index = () => {
   /*
@@ -226,15 +227,14 @@ const index = () => {
   return (
     <Layout
       headTittle="Pollito's stuff | Another Task App"
-      title={'Another Task App ❌✅'}
-      pretitle={'You are using...'}
-      descriptionRows={[
+      navTitle={'Another Task App ❌✅'}
+      introDescriptionRows={[
         'Yes, another task managing app',
         'with CRUD operations and pagination in MongoDB & mongoose',
       ]}
-      signature="Pollito, while making the millionth task managing app in the internet"
-      displayHomeButton={true}
-      goTo="https://reactjsexample.com/tag/todo/"
+      introSignature="Pollito, while making the millionth task managing app in the internet"
+      isThisHome={false}
+      introHref="https://reactjsexample.com/tag/todo/"
     >
       {error ? (
         <DisplayError errorMessage={error} />
@@ -244,15 +244,20 @@ const index = () => {
         <>
           <div className="flex flex-row items-end justify-between">
             <button
-              className="rounded bg-[#555D8E] py-2 px-4 font-semibold text-white hover:bg-blue-500"
+              className="rounded bg-sky-900 py-2 px-4 font-semibold text-white hover:bg-sky-700"
               onClick={() => setShowModal(true)}
             >
-              Add new!
+              <div className="flex items-center">
+                <div className="mr-2">
+                  <SiAddthis />
+                </div>
+                <div>Add new!</div>
+              </div>
             </button>
             <OrderByCreated currentSort={sort} handleClick={updateSort} />
           </div>
           {data.docs?.length === 0 ? (
-            <div className="container mx-auto mb-8 w-fit bg-white bg-opacity-10 py-2 px-4 text-lg md:py-4 md:px-10 md:text-2xl lg:py-6 lg:px-12 lg:text-3xl">
+            <div className="container my-2 mx-auto mb-8 w-fit bg-slate-900 bg-opacity-80 py-2 px-4 text-lg md:py-4 md:px-10 md:text-2xl lg:py-6 lg:px-12 lg:text-3xl">
               Nothing to show. Add a new task!
             </div>
           ) : (

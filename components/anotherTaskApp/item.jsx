@@ -15,9 +15,11 @@ const Item = ({ data, crudUpdate, crudDelete }) => {
   return (
     <>
       <div
-        className={`${
-          data.reminder ? 'border-l-green-500' : 'border-l-red-500'
-        } m-1 flex flex-row items-center justify-between border-l-8 bg-[#716da9] bg-opacity-80 py-2.5 px-5`}
+        className={`bg-gradient-to-r ${
+          data.reminder
+            ? 'from-green-500 via-green-800'
+            : 'from-red-500 via-red-800'
+        } m-2 flex flex-row items-center justify-between to-slate-900 py-2 px-4 opacity-90 transition duration-150 ease-in-out hover:scale-105`}
       >
         <div className="overflow-hidden">
           <h3 className="... truncate font-bold">{data.text}</h3>
@@ -33,13 +35,13 @@ const Item = ({ data, crudUpdate, crudDelete }) => {
           <div className="flex flex-row items-center">
             <button
               onClick={() => setShowModal(true)}
-              className="rounded bg-[#555D8E] py-2 px-4 font-semibold text-white hover:bg-[#4B578B]"
+              className="rounded bg-slate-800 py-2 px-4 font-semibold hover:bg-slate-700"
             >
               More info...
             </button>
             <FaTimes
-              className="mx-1"
-              style={{ color: 'red', cursor: 'pointer' }}
+              className="ml-2 text-3xl"
+              style={{ color: 'white', cursor: 'pointer' }}
               onClick={() => crudDelete(data._id)}
             />
           </div>

@@ -1,19 +1,18 @@
 import Head from 'next/head'
-import Footer from './footer'
 import Intro from './intro'
 import HomeButton from './homeButton'
 import FadeIn from './fadeIn'
 import { Toaster } from 'react-hot-toast'
+import Navbar from './navbar'
 
 const Layout = ({
   children,
   headTittle,
-  title,
-  pretitle,
-  descriptionRows,
-  signature,
-  goTo,
-  displayHomeButton,
+  navTitle,
+  introDescriptionRows,
+  introSignature,
+  introHref,
+  isThisHome,
 }) => {
   return (
     <>
@@ -26,20 +25,18 @@ const Layout = ({
       <Toaster position="top-center" reverseOrder={true} />
 
       <div className="flex min-h-screen flex-col text-white">
+        <Navbar pageText={navTitle} />
         <main className="container mx-auto flex-1 px-4 pt-8 text-left">
           <Intro
-            title={title}
-            pretitle={pretitle}
-            descriptionRows={descriptionRows}
-            signature={signature}
-            goTo={goTo}
+            descriptionRows={introDescriptionRows}
+            signature={introSignature}
+            goTo={introHref}
           />
           <FadeIn delay={500} duration={2000}>
             {children}
           </FadeIn>
         </main>
-        {displayHomeButton && <HomeButton />}
-        {/* <Footer /> */}
+        {!isThisHome && <HomeButton />}
       </div>
     </>
   )

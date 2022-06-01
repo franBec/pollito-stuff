@@ -6,19 +6,17 @@ import { useState } from 'react'
 import yearsSinceDate from '../../lib/funcs/yearsSinceDate'
 
 const index = () => {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(1)
 
   return (
     <Layout
       headTittle="Pollito's stuff | About"
-      title={'About Pollito Stuff 🐤'}
-      pretitle={'You are viewing...'}
-      descriptionRows={['Oh, hi~']}
-      signature="Nanashi Mumei"
-      displayHomeButton={true}
-      goTo="https://youtu.be/4NYsqm2E41k"
+      navTitle={'About'}
+      introDescriptionRows={['Oh, hi~']}
+      introSignature="Nanashi Mumei"
+      isThisHome={false}
+      introHref="https://youtu.be/4NYsqm2E41k"
     >
-      <PersonalInfoCard />
       <div className="flex flex-col items-center justify-center">
         <AccordionItem
           title={'About me'}
@@ -26,6 +24,7 @@ const index = () => {
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         >
+          <PersonalInfoCard />
           <GenericCard title={'Who am I?'}>
             <p class="leading-normal text-gray-200">
               Hello! I'm Franco (Pollito), a {yearsSinceDate('1999-04-08')}{' '}
