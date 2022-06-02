@@ -4,8 +4,10 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
 theme: {
-    extend: { colors: { primary: "#4B578B" } },
     fontFamily: { sans: ["Montserrat", "sans-serif"] },
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 }

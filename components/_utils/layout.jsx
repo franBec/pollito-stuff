@@ -21,23 +21,23 @@ const Layout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Toaster shows pop up notifications, is kinda useful to say 'hey this is loading' */}
+      {/* Toast notifications */}
       <Toaster position="top-center" reverseOrder={true} />
 
-      <div className="flex min-h-screen flex-col text-white">
-        <Navbar pageText={navTitle} />
-        <main className="container mx-auto flex-1 px-4 pt-8 text-left">
+      <main className="mx-auto min-h-screen px-4 py-20 text-white xl:container">
+        <FadeIn delay={0} duration={1500}>
           <Intro
             descriptionRows={introDescriptionRows}
             signature={introSignature}
             goTo={introHref}
           />
-          <FadeIn delay={500} duration={2000}>
-            {children}
-          </FadeIn>
-          <div className="mt-5">{!isThisHome && <HomeButton />}</div>
-        </main>
-      </div>
+          {children}
+          <div className="mt-4">{!isThisHome && <HomeButton />}</div>
+        </FadeIn>
+      </main>
+
+      {/*Why navbar is delared here? https://stackoverflow.com/questions/72239346/next-js-image-always-on-top */}
+      <Navbar pageText={navTitle} />
     </>
   )
 }
