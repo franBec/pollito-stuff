@@ -7,7 +7,7 @@ const PersonalInfoCard = () => {
       <div className="max-w-sm rounded-md  bg-slate-800 bg-opacity-80 p-2 shadow-md">
         <div className="flex flex-col items-center p-2">
           <Image
-            src="/img/profilePic.png"
+            src="/img/profilePic.jpg"
             width={200}
             height={200}
             alt="me.jpg"

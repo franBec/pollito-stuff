@@ -4,6 +4,7 @@ import GenericCard from '../../components/about/genericCard'
 import AccordionItem from '../../components/_utils/accordion/accordionItem'
 import { useState } from 'react'
 import yearsSinceDate from '../../lib/funcs/yearsSinceDate'
+import ATagWithFormat from '../../components/about/aTagWithFormat'
 
 const index = () => {
   const [activeIndex, setActiveIndex] = useState(1)
@@ -26,169 +27,198 @@ const index = () => {
         >
           <PersonalInfoCard />
           <GenericCard title={'Who am I?'}>
-            <p class="leading-normal text-gray-200">
+            <p class="leading-normal">
               Hello! I'm Franco (Pollito), a {yearsSinceDate('1999-04-08')}{' '}
               years old programmer from Argentina 🧉. I studied Computer
               Engineering from 2018 to 2021, and started working in the web
               development area in mid-late 2021
             </p>
           </GenericCard>
-          <GenericCard title={'During the college years...'}>
-            <p class="leading-normal text-gray-200">
-              I've learned about Logic, Mathematic analisis, General purpose
-              software develpment, Data management, and Distributed and parallel
-              systems. You can check out different college projects I did in my{' '}
-              <a
-                className="underline"
-                href="https://github.com/franBec"
+          <GenericCard title={'Academic background'}>
+            <p className="border-2 border-dashed p-2 text-center text-sm leading-normal">
+              You can click on each item to check more info about it
+            </p>
+            <br />
+            <p class="leading-normal">
+              <ATagWithFormat
+                goto="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/niveles-educativos"
+                text="Argentine mandatory education (educación incial, primaria,
+                secundaria)"
+                format="li"
+              />
+              <br />
+              2011 - 2016
+              <ATagWithFormat
+                goto="https://drive.google.com/file/d/10bYZN6nPLOHhRuUT6t665rS2GMsJGMhk/view?usp=sharing"
+                text="English language training"
+                format="li"
+              />
+              <br />
+              2018 - 2021
+              <ATagWithFormat
+                goto="https://drive.google.com/file/d/1lE_3cnoPvAi6lI8ofx9adbCLKPuDmDYR/view?usp=sharing"
+                text="Computer Engineering Student"
+                format="li"
+              />
+              <br />
+              2019
+              <ATagWithFormat
+                goto="https://drive.google.com/file/d/1ZRzNwzuWxHUDomRWSYBb9L4XVDN-y1eO/view?usp=sharing"
+                text='Attendant at "The First Computer Science Conference" organized by
+                the Student Center of the Faculty of Physical, Mathematical and
+                Natural Sciences'
+                format="li"
+              />
+              <ATagWithFormat
+                goto="https://drive.google.com/file/d/1YONsZaEpfZCX92k0OfuYJX0h6ACV_UEQ/view?usp=sharing"
+                text='Student at "The Fifth Computer School of the Department of
+                Computer Science", in the field of the Faculty of Physical,
+                Mathematical and Natural Sciences (Pages 10 & 11)'
+                format="li"
+              />
+              <br />
+              2020
+              <ATagWithFormat
+                goto="https://drive.google.com/file/d/1RDbr-G7W4yIhd4W4rOOYkyEZVzoDUQ8F/view?usp=sharing"
+                text='Member of "Risks in the Network", a social interest project extension of the
+                National University of San Luis (Page 26)'
+                format="li"
+              />
+              <br />
+              2021
+              <ATagWithFormat
+                goto="https://fmn.unsl.edu.ar/curso-de-ingreso-2021-agradecimiento-a-docentes-y-tutores-del-curso-comprension-de-texto/"
+                text='Tutor of the course "Text Comprehension" of the 2021 Entrance to
+                the Faculty of Physical, Mathematical and Natural Sciences (yep, sadly the only evidence left is a post in the uni webpage)'
+                format="li"
+              />
+              <br />
+              2022
+              <ATagWithFormat
+                goto="https://udemy-certificate.s3.amazonaws.com/pdf/UC-f3e555f6-20e5-4ad9-a4a1-fcd6982930f1.pdf"
+                text="Practical SCRUM in Software Projects"
+                format="li"
+              />
+              <ATagWithFormat
+                goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1821618?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                text="Introduction to Digital Transformation with Google Cloud"
+                format="li"
+              />
+              <ATagWithFormat
+                goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823577?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                text="Infrastructure and Application Modernization with Google Cloud"
+                format="li"
+              />
+              <ATagWithFormat
+                goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823373?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
                 target="_blank"
-              >
-                Github
-              </a>{' '}
-              and{' '}
-              <a
-                className="underline"
-                href="https://drive.google.com/drive/folders/1kB1M3XeUrQptLbihhBvKDbFCKrNiEhVm?usp=sharing"
+                text="Innovating with Data and Google Cloud"
+                format="li"
+              />
+              <ATagWithFormat
+                goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1825709?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
                 target="_blank"
-              >
-                Google Drive folder
-              </a>{' '}
-              where there are academics reports and summaries
+                text="Understanding Google Cloud Security and Operations"
+                format="li"
+              />
+              <ATagWithFormat
+                goto="https://www.credential.net/286b807f-51d1-41d0-871a-e914af7fb87d"
+                text="Cloud Digital Leader"
+                format="li"
+              />
             </p>
           </GenericCard>
-          <GenericCard title={'After that...'}>
-            <p class="leading-normal text-gray-200">
-              I continued gaining knowledge about building web applications,
-              obtaining badges and certifications such as...
-            </p>
-            <ul className="list-inside list-disc">
-              <li>
-                <a
-                  className="underline"
-                  href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-f3e555f6-20e5-4ad9-a4a1-fcd6982930f1.pdf"
-                  target="_blank"
-                >
-                  Practical SCRUM in Software Projects
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline"
-                  href="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1821618?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-                  target="_blank"
-                >
-                  Introduction to Digital Transformation with Google Cloud
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline"
-                  href="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823577?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-                  target="_blank"
-                >
-                  Infrastructure and Application Modernization with Google Cloud
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline"
-                  href="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823373?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-                  target="_blank"
-                >
-                  Innovating with Data and Google Cloud
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline"
-                  href="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1825709?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-                  target="_blank"
-                >
-                  Understanding Google Cloud Security and Operations
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline"
-                  href="https://www.credential.net/286b807f-51d1-41d0-871a-e914af7fb87d"
-                  target="_blank"
-                >
-                  Cloud Digital Leader
-                </a>
-              </li>
-            </ul>
-          </GenericCard>
+
           <GenericCard title={'Work experience'}>
-            <p class="leading-normal text-gray-200">
+            <p class="leading-normal">
               Since September 2021, I am part of the development team in{' '}
-              <a
-                className="underline"
-                href="https://www.runaid.com.ar/"
-                target="_blank"
-              >
-                RunaID
-              </a>
+              <ATagWithFormat
+                goto="https://www.runaid.com.ar/"
+                text="RunaID"
+                format="underline"
+              />
               , becoming the main developer behind{' '}
-              <a
-                className="underline"
-                href="https://sigem.sanluislaciudad.gob.ar/sigem/"
-                target="_blank"
-              >
-                SIGEM web page
-              </a>
+              <ATagWithFormat
+                goto="https://sigem.sanluislaciudad.gob.ar/sigem/"
+                text="SIGEM web page"
+                format="underline"
+              />
               , where together with a great team we carry out development tasks
               of new functionalities and improvements of existing features
             </p>
+            <p className="mt-2 text-sm leading-normal">
+              **Random fact: During summer 2017 I was a waiter at a San Luis
+              City café ☕
+            </p>
           </GenericCard>
-          <GenericCard title={"What technologies I'm good at?"}>
-            <p class="leading-normal text-gray-200">
-              At work, I use the following technology stack:
-            </p>
-            <ul className="list-inside list-disc">
-              <li>
-                <a
-                  className="underline"
-                  href="https://grails.org/"
-                  target="_blank"
-                >
-                  Grails Framework
-                </a>
-              </li>
-              <li>
-                HTML5, CSS, Javascript,{' '}
-                <a
-                  className="underline"
-                  href="https://getbootstrap.com/"
-                  target="_blank"
-                >
-                  Bootstrap
-                </a>
-              </li>
-              <li>SQL Server</li>
-            </ul>
-            <p class="mt-2 leading-normal text-gray-200">
-              On the other hand, this page is built in{' '}
-              <a
-                className="underline"
-                href="https://nextjs.org/"
-                target="_blank"
-              >
-                Next.js
-              </a>{' '}
-              (or as I like to refer to it, "React++"). More on the technologies
-              used here just below
-            </p>
-            <p class="mt-2 leading-normal text-gray-200">
-              At college I did a lot of general purpose programming, mainly in C
-              and Java. Also had to use different languages throughout the
-              college courses, from Assembly to PHP
-            </p>
-            <iframe
-              width="600"
-              height="600"
-              src="https://ionicabizau.github.io/github-profile-languages/api.html?franBec"
-              frameborder="0"
-            ></iframe>
+          <GenericCard title={"What technologies I'm familiar with?"}>
+            <div class="border-2 border-dashed p-4 leading-normal">
+              <p class="text-xl font-semibold leading-normal">~At college...</p>
+              <br />
+              <p class="leading-normal">
+                I did a lot of general purpose not web related programming,
+                mainly in C and Java, but also had to write code in other
+                languages. Check out the graphic just below!
+              </p>
+            </div>
+            <br />
+            <div class="border-2 border-dashed p-4 leading-normal">
+              <p class="text-xl font-semibold leading-normal">~At work...</p>
+              <br />
+              <p class="leading-normal">
+                I'm daily dealing with the following technology stack:
+              </p>
+              <br />
+              <ul className="list-inside list-disc">
+                <li>
+                  <ATagWithFormat
+                    goto="https://grails.org/"
+                    text="Grails"
+                    format="underline"
+                  />
+                  , a Java web development framework that follows the{' '}
+                  <ATagWithFormat
+                    goto="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller"
+                    text="MVC architectural pattern"
+                    format="underline"
+                  />
+                </li>
+                <li>HTML5, CSS, Javascript, Bootstrap</li>
+                <li>SQL Server</li>
+              </ul>
+            </div>
+            <br />
+            <div class="border-2 border-dashed p-4 leading-normal">
+              <p class="text-xl font-semibold leading-normal">~This page...</p>
+              <br />
+              <p class="leading-normal">
+                Is built in{' '}
+                <ATagWithFormat
+                  goto="https://nextjs.org/"
+                  text="Next.js"
+                  format="underline"
+                />
+                , a very different approach. It allows to build entire fullstack
+                applications in Javascript with both server-side and client-side
+                code coupled together, a thing that MVC and its separation of
+                concerns philosophy go against
+              </p>
+            </div>
+            <br />
+            <div className="flex justify-center">
+              <p className="text-xl leading-normal">
+                ~Graphic of the languages in my GitHub repos~
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <iframe
+                width="600"
+                height="600"
+                src="https://ionicabizau.github.io/github-profile-languages/api.html?franBec"
+                frameborder="0"
+                className="bg-slate-300 bg-opacity-20"
+              ></iframe>
+            </div>
           </GenericCard>
         </AccordionItem>
         <AccordionItem
@@ -198,33 +228,23 @@ const index = () => {
           setActiveIndex={setActiveIndex}
         >
           <GenericCard title={'What is Pollito Stuff?'}>
-            <p class="border-2 border-dashed p-2 leading-normal text-gray-200">
-              <span className="font-bold">TL;DR:</span> Is a page where I
+            <p class="border-2 border-dashed p-2 leading-normal">
+              <span className="font-bold">TL;DR:</span> is a page where I
               challenge myself to built little web apps using a technology stack
               that I'm not that familiar with, to force me out of the confort
-              zone and keep learning
+              zone and keep learning. Also is a cool portfolio
             </p>
-            <p class="mt-2 leading-normal text-gray-200">
-              Now the full story. After watching{' '}
-              <a
-                className="underline"
-                href="https://youtu.be/FQPlEnKav48"
-                target="_blank"
-              >
-                this video from Fireship
-              </a>{' '}
-              (great youtube channel, you should check it out), I liked the idea
-              of doing React in a more 'organized way'. Previous to get my first
-              job, in a series of work interview tests, I was given the task to
-              build a to-do app, first in plain Javascript, and then using
-              React. And oh boy... the React one was a great disaster. I had to
-              learn how to decently do state and component management under 48
-              hours, including CRUD operations in mongoDB... and it didn't came
-              out very well. It is still in my github, is quite buggy and I'm
-              not that proud of it to the point I didn't even bother to properly
-              fix it
+            <br />
+            <p class="leading-normal">
+              Previous to get my first web dev job, in a job interview I was
+              given the task to build a to-do app, first in plain Javascript,
+              and then using React. And oh boy... the React one was a great
+              disaster. I had to learn how to decently do state and component
+              management under 48 hours, including CRUD operations in mongoDB...
+              and it didn't came out very well
             </p>
-            <p class="mt-2 leading-normal text-gray-200">
+            <br />
+            <p class="leading-normal">
               {' '}
               Pollito Stuff 🐤 started as a{' '}
               <span className="italic">
@@ -236,163 +256,55 @@ const index = () => {
               someone who doesn't like to sit still doing nothing
             </p>
           </GenericCard>
-          <GenericCard title={'What tenchonologies are used in this page?'}>
-            <p class="leading-normal text-gray-200">
-              I'm glad you asked! I won't try to explain each one. Instead, I'll
-              list them and you can check out their official websites, where I'm
-              sure they'll give you a better explanation than the one I could
-              give
+          <GenericCard title={'Can I have the code?'}>
+            <p class="leading-normal">
+              Yes of course,{' '}
+              <ATagWithFormat
+                goto="https://github.com/franBec/pollito-stuff"
+                text="Here it is!"
+                format="underline"
+              />{' '}
+              A simple branch (I'm the only dev here so, no need of overengineer
+              this repo yet)
             </p>
-            <div className="mt-2 flex flex-wrap gap-y-1">
-              <a
-                href="https://nextjs.org/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                Next.js
-              </a>
-              <a
-                href="https://reactjs.org/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                React.js
-              </a>
-              <a
-                href="https://tailwindcss.com/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                tailwindcss
-              </a>
-              <a
-                href="https://fontawesome.com/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                Font Awesome
-              </a>
-              <a
-                href="https://turfjs.org/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                Turf.js
-              </a>
-              <a
-                href="https://babeljs.io/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                Babel
-              </a>
-              <a
-                href="https://mongoosejs.com/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                mongoose
-              </a>
-              <a
-                href="https://www.npmjs.com/package/mongoose-paginate-v2"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                mongoose PAGINATE v2
-              </a>
-              <a
-                href="https://react-hot-toast.com/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                React Hot Toast
-              </a>
-              <a
-                href="https://react-icons.github.io/react-icons/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                React Icons
-              </a>
-              <a
-                href="https://www.npmjs.com/package/react-loading-spin"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                react-loading-spin
-              </a>
-              <a
-                href="https://sweetalert2.github.io/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                sweetalert2
-              </a>
-              <a
-                href="https://swr.vercel.app/"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                swr
-              </a>
-              <a
-                href="https://www.npmjs.com/package/yn"
-                class="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-medium text-blue-800 hover:bg-blue-200 dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300"
-                target="_blank"
-              >
-                yn
-              </a>
-            </div>
           </GenericCard>
           <GenericCard title={'So.. what next?'}>
-            <p class="leading-normal text-gray-200">
+            <p class="leading-normal">
               Well... idk. I just do whatever I feel like doing at the moment
-              when it comes to this page. Also, I'm planning to take the{' '}
-              <a
-                className="underline"
-                href="https://cloud.google.com/certification/cloud-engineer?hl=es"
-                target="_blank"
-              >
-                Google's Associate Cloud Engineer exam
-              </a>{' '}
-              sometime soon, I haven't even started studing for it
+              when it comes to this page
             </p>
-            <p class="mt-2 leading-normal text-gray-200">
+            <br />
+            <p class="leading-normal">
               So, do I have any more ideas? Yea sure!
             </p>
+            <br />
             <ul className="list-inside list-disc">
               <li>
                 CUIT generator! Is something quite implemented in Random Puntano
                 Generator, but I also want it as a standalone feature.{' '}
-                <a
-                  className="underline"
-                  href="http://www0.unsl.edu.ar/~jolguin/cuit.php"
-                  target="_blank"
-                >
-                  Kinda like this UNSL page
-                </a>
+                <ATagWithFormat
+                  goto="http://www0.unsl.edu.ar/~jolguin/cuit.php"
+                  text="Kinda like this UNSL page"
+                  format="underline"
+                />
               </li>
               <li>
                 I'd like to add a picture to the random Puntano created. Surely
                 will be using{' '}
-                <a
-                  className="underline"
-                  href="https://thispersondoesnotexist.com/image"
-                  target="_blank"
-                >
-                  thispersondoesnotexist
-                </a>
+                <ATagWithFormat
+                  goto="https://thispersondoesnotexist.com/image"
+                  text="thispersondoesnotexist"
+                  format="underline"
+                />
               </li>
               <li>
                 You know how you can reverse search an image? Also did you know
                 about the{' '}
-                <a
-                  className="underline"
-                  href="https://github.com/cat-milk/Anime-Girls-Holding-Programming-Books"
-                  target="_blank"
-                >
-                  Anime Girls Holding Programming Books github
-                </a>
+                <ATagWithFormat
+                  goto="https://github.com/cat-milk/Anime-Girls-Holding-Programming-Books"
+                  text=" Anime Girls Holding Programming Books GitHub repo"
+                  format="underline"
+                />
                 ? I think something interesting can be made out of it
               </li>
               <li>
@@ -401,7 +313,7 @@ const index = () => {
               </li>
               <li>
                 I really wanna document all that has be done so far before going
-                any further. Making a /about of every main functionality this
+                any further. Making a '/about' of every main functionality this
                 page has at the moment. Right now documentation is null, just
                 random comments left in the code
               </li>

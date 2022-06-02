@@ -232,9 +232,9 @@ const index = () => {
         'Yes, another task managing app',
         'with CRUD operations and pagination in MongoDB & mongoose',
       ]}
-      introSignature="Pollito, while making the millionth task managing app in the internet"
+      introSignature="Pollito, while escaping React tutorial hell"
       isThisHome={false}
-      introHref="https://reactjsexample.com/tag/todo/"
+      introHref="https://youtu.be/HyWYpM_S-2c"
     >
       {error ? (
         <DisplayError errorMessage={error} />

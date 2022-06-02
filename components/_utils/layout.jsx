@@ -35,8 +35,8 @@ const Layout = ({
           <FadeIn delay={500} duration={2000}>
             {children}
           </FadeIn>
+          <div className="mt-5">{!isThisHome && <HomeButton />}</div>
         </main>
-        {!isThisHome && <HomeButton />}
       </div>
     </>
   )
