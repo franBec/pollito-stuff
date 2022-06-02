@@ -4,4 +4,4 @@ Is a page where I challenge myself to built little web apps using a technology s
 
 Right now is a simple branch cause I'm the only dev so no need to overengineer the repo
 
-Check it out here: (https://pollito-stuff.vercel.app/)
+Check it out here: https://pollito-stuff.vercel.app/
