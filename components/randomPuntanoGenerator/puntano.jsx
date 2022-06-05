@@ -1,110 +1,88 @@
-import { useEffect, useState } from 'react'
-
-import randomBirthday from '../../lib/funcs/randomBirthday'
-import randomDNI from '../../lib/funcs/randomDNI'
-import getCUIT from '../../lib/funcs/getCUIT'
-import castDateTo_dd_mm_yyyy from '../../lib/funcs/castDateTo_dd_mm_yyyy'
-
-import randomAddress from '../../lib/funcs/randomAddress'
-
-//https://www.npmjs.com/package/yn
-import yn from 'yn'
-
 import PuntanoInfo from './puntanoInfo'
-
 import DisplayError from '../_utils/displayError'
-
 import Map from './map/map'
 import Mapnt from './map/mapnt'
+import ImageWFallback from './map/imageWFallback'
+import ATagWithFormat from '../_utils/aTagWithFormat'
 
-const simulateAddress = yn(
-  process.env.NEXT_PUBLIC_RandomPuntanoGenerator_UseMaps
-)
-
-const Puntano = ({ firstName, lastName, gender, age, triggerUseEffect }) => {
-  /*
-   * Birthday, dni, & cuit management
-    birthday = f(age)
-    dni = f(birthday)
-    cuit = f(dni, gender)
-   */
-  const [birthday, setBirthday] = useState('')
-  const [dni, setDni] = useState(0)
-  const [cuit, setCuit] = useState(0)
-
-  const makeAgeRelatedStuff = () => {
-    const birthday = randomBirthday(age)
-    const dni = randomDNI(birthday)
-    const cuit = getCUIT(dni.toString(), gender)
-
-    return { birthday: birthday, dni: dni, cuit: cuit }
+const Puntano = ({ puntano }) => {
+  const loadRandomPhoto = ({ src }) => {
+    return `${src}/${new Date().toISOString()}?minimum_age=${
+      puntano.age
+    }&maximum_age=${puntano.age}${
+      puntano.gender === 'M'
+        ? '&gender=male'
+        : puntano.gender === 'F'
+        ? '&gender=female'
+        : ''
+    }`
   }
-
-  /*
-   * Random address management
-    defaults to San Luis main square
-   */
-  const [address, setAddress] = useState('PLAZA PRINGLES')
-  const [marker, setMarker] = useState({
-    // San Luis main square
-    lat: -33.30213,
-    lng: -66.33692,
-  })
-  const [addressError, setAddressError] = useState('')
-
-  /*
-  *useEffect
-    -trigger a new simultation of age related stuff: birthday, dni, & cuit
-    -create a random point that is located in Ciudad de San Luis
-  */
-  useEffect(() => {
-    const fetchData = async () => {
-      //age related stuff
-      const ageRelatedStuff = makeAgeRelatedStuff(age)
-      setBirthday(castDateTo_dd_mm_yyyy(ageRelatedStuff.birthday))
-      setDni(ageRelatedStuff.dni)
-      setCuit(ageRelatedStuff.cuit)
-
-      //random address stuff
-      if (simulateAddress) {
-        try {
-          const data = await randomAddress()
-          setAddress(data.results[0].formatted_address.split(',')[0]) //just the street and number
-          setMarker(data.results[0].geometry.location)
-        } catch (error) {
-          setAddressError(error.toString())
-        }
-      }
-    }
-    fetchData()
-  }, [triggerUseEffect])
 
   return (
     <>
       <div className="my-2">
         <div className="mx-auto w-fit">
-          <PuntanoInfo k={'NAME'} v={firstName + ' ' + lastName} />
-          <PuntanoInfo
-            k={'GENDER'}
-            v={
-              gender === 'M' ? 'Male' : gender === 'F' ? 'Female' : 'Indefinite'
-            }
-          />
-          <PuntanoInfo k={'BIRTHDAY'} v={birthday} />
-          <PuntanoInfo k={'DNI'} v={dni} />
-          <PuntanoInfo k={'CUIT'} v={cuit} />
-          {simulateAddress ? (
-            addressError ? (
-              <DisplayError errorMessage={addressError} />
+          <p className="border-2 border-dashed p-2">
+            The photo used is NOT a real person! is an AI made up face provided
+            by{' '}
+            <ATagWithFormat
+              format="underline"
+              text="fakeface rest"
+              goto="https://hankhank10.github.io/fakeface/"
+            />
+          </p>
+          <br />
+          <div className="flex flex-row">
+            <div>
+              <ImageWFallback
+                loader={loadRandomPhoto}
+                src="https://fakeface.rest/thumb/view"
+                fallbackSrc="/img/defaultPhoto.png"
+                width={200}
+                height={200}
+                alt="random.jpg"
+                placeholder="blur"
+                blurDataURL="/img/defaultPhoto.png"
+              />
+            </div>
+            <div className="grow pl-2">
+              <PuntanoInfo
+                k={'NAME'}
+                v={puntano.firstName + ' ' + puntano.lastName}
+              />
+              <PuntanoInfo
+                k={'GENDER'}
+                v={
+                  puntano.gender === 'M'
+                    ? 'Male'
+                    : puntano.gender === 'F'
+                    ? 'Female'
+                    : 'Indefinite'
+                }
+              />
+              <PuntanoInfo k={'BIRTHDAY'} v={puntano.birthday} />
+              <PuntanoInfo k={'DNI'} v={puntano.dni} />
+              <PuntanoInfo k={'CUIT'} v={puntano.cuit} />
+            </div>
+          </div>
+          <div className="py-2">
+            {puntano.address.isAddressSimulationEnabled ? (
+              puntano.address.addressError ? (
+                <DisplayError errorMessage={puntano.address.addressError} />
+              ) : (
+                <>
+                  <PuntanoInfo k={'ADDRESS'} v={puntano.address.address} />
+                  <div className="flex justify-center">
+                    <div>
+                      <Map markerPosition={puntano.address.coords} />
+                    </div>
+                  </div>
+                </>
+              )
             ) : (
-              <>
-                <PuntanoInfo k={'ADDRESS'} v={address} />
-                <Map markerPosition={marker} />
-              </>
-            )
-          ) : (
-            <Mapnt />
-          )}
+              <Mapnt />
+            )}
+          </div>
         </div>
       </div>
     </>

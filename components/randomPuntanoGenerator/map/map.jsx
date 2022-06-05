@@ -12,8 +12,8 @@ import styles from './styles'
 import polygonGeoJson from './sanLuisGeoJson'
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '500px',
+  height: '500px',
 }
 
 const options = {

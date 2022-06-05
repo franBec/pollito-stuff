@@ -1,7 +1,8 @@
 import Iframe from 'react-iframe'
 import yearsSinceDate from '../../lib/funcs/yearsSinceDate'
 import GenericCard from './genericCard'
-import ATagWithFormat from './aTagWithFormat'
+import ATagWithFormat from '../_utils/aTagWithFormat'
+import { BsStars } from 'react-icons/bs'
 
 const AboutMe = () => {
   return (
@@ -37,7 +38,7 @@ const AboutMe = () => {
           2018 - 2021
           <ATagWithFormat
             goto="https://drive.google.com/file/d/1lE_3cnoPvAi6lI8ofx9adbCLKPuDmDYR/view?usp=sharing"
-            text="Computer Engineering Student"
+            text="Computer Engineering Student at the National University of San Luis"
             format="li"
           />
           <br />
@@ -57,7 +58,7 @@ const AboutMe = () => {
             format="li"
           />
           <br />
-          2020
+          2020 - 2022
           <ATagWithFormat
             goto="https://drive.google.com/file/d/1RDbr-G7W4yIhd4W4rOOYkyEZVzoDUQ8F/view?usp=sharing"
             text='Member of "Risks in the Network", a social interest project extension of the
@@ -180,6 +181,21 @@ const AboutMe = () => {
             applications in Javascript with both server-side and client-side
             code coupled together, a thing that MVC and its separation of
             concerns philosophy go against
+          </p>
+          <br />
+          <p>
+            Oh, and the{' '}
+            <span className="italic">
+              <BsStars className="inline-block" />
+              aesthetic
+              <BsStars className="inline-block" />
+            </span>{' '}
+            is thanks to{' '}
+            <ATagWithFormat
+              goto="https://tailwindcss.com/"
+              text="Tailwind CSS"
+              format="underline"
+            />
           </p>
         </div>
         <br />

@@ -1,5 +1,5 @@
 import GenericCard from './genericCard'
-import ATagWithFormat from './aTagWithFormat'
+import ATagWithFormat from '../_utils/aTagWithFormat'
 const AboutThisPage = () => {
   return (
     <>
