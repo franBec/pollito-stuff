@@ -49,7 +49,7 @@ const newPuntano = async(gender, age) =>{
     const dni = randomDNI(birthday)
     const cuit = getCUIT(dni.toString(), data_gender)
 
-    /* simultate address*/
+    //simultate address
     const isAddressSimulationEnabled = yn(process.env.NEXT_PUBLIC_RandomPuntanoGenerator_UseMaps)
     let address = ''
     let coords = {}
@@ -79,6 +79,5 @@ const newPuntano = async(gender, age) =>{
             addressError
         }
     }
-    
 }
 export default newPuntano

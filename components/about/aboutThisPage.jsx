@@ -63,15 +63,6 @@ const AboutThisPage = () => {
             />
           </li>
           <li>
-            I'd like to add a picture to the random Puntano created. Surely will
-            be using{' '}
-            <ATagWithFormat
-              goto="https://thispersondoesnotexist.com/image"
-              text="thispersondoesnotexist"
-              format="underline"
-            />
-          </li>
-          <li>
             You know how you can reverse search an image? Also did you know
             about the{' '}
             <ATagWithFormat

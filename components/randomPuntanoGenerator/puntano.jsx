@@ -2,21 +2,30 @@ import PuntanoInfo from './puntanoInfo'
 import DisplayError from '../_utils/displayError'
 import Map from './map/map'
 import Mapnt from './map/mapnt'
-import ImageWFallback from './map/imageWFallback'
 import ATagWithFormat from '../_utils/aTagWithFormat'
+import randomInt from '../../lib/funcs/randomInt'
+import { useEffect, useState } from 'react'
 
-const Puntano = ({ puntano }) => {
-  const loadRandomPhoto = ({ src }) => {
-    return `${src}/${new Date().toISOString()}?minimum_age=${
-      puntano.age
-    }&maximum_age=${puntano.age}${
-      puntano.gender === 'M'
-        ? '&gender=male'
-        : puntano.gender === 'F'
-        ? '&gender=female'
-        : ''
-    }`
-  }
+const Puntano = ({ puntano, getNewPhoto }) => {
+  const [imageUrl, setImageUrl] = useState('/img/defaultPhoto.png')
+
+  useEffect(() => {
+    setImageUrl(
+      `https://fakeface.rest/thumb/view/${new Date().toISOString()}?minimum_age=${randomInt(
+        Number(puntano.age) - 3,
+        Number(puntano.age)
+      )}&maximum_age=${randomInt(
+        Number(puntano.age),
+        Number(puntano.age) + 3
+      )}${
+        puntano.gender === 'M'
+          ? '&gender=male'
+          : puntano.gender === 'F'
+          ? '&gender=female'
+          : ''
+      }`
+    )
+  }, [getNewPhoto])
 
   return (
     <>
@@ -34,16 +43,12 @@ const Puntano = ({ puntano }) => {
           <br />
           <div className="flex flex-row">
             <div>
-              <ImageWFallback
-                loader={loadRandomPhoto}
-                src="https://fakeface.rest/thumb/view"
-                fallbackSrc="/img/defaultPhoto.png"
-                width={200}
-                height={200}
+              <img
+                src={imageUrl}
                 alt="random.jpg"
-                placeholder="blur"
-                blurDataURL="/img/defaultPhoto.png"
-              />
+                width="200"
+                height="200"
+              ></img>
             </div>
             <div className="grow pl-2">
               <PuntanoInfo

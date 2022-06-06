@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Layout from '../../components/_utils/layout'
+import Layout from '../../../components/_utils/layout'
 import useSound from 'use-sound'
 
 const index = () => {
@@ -27,9 +27,13 @@ const index = () => {
   return (
     <Layout
       headTittle="Pollito's stuff | r u gay"
-      introDescriptionRows={['u r gae']}
-      introSignature="Why are u gae????"
-      introHref="https://youtu.be/eEa3vDXatXg"
+      introDescriptionRows={[
+        'Should I explicitly say that this is not to be taken seriously?',
+        "Everyone's so snowflake lately...",
+        'Thnks to Mica for asking this, so much fun',
+      ]}
+      introSignature="with <3, from Pollito to Mica"
+      introHref="https://instagram.com/mi.mi_ca?igshid=YmMyMTA2M2Y="
       isThisHome={true}
     >
       <div className="flex flex-col items-center">

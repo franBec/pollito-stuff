@@ -1,6 +1,6 @@
 import Card from './card'
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons'
-import { faPencil } from '@fortawesome/free-solid-svg-icons'
+import { faDice } from '@fortawesome/free-solid-svg-icons'
 import { faPersonCircleQuestion } from '@fortawesome/free-solid-svg-icons'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,7 +16,7 @@ const Menu = () => {
         goTo={'/anotherTaskApp'}
       />
       <Card
-        icon={faPencil}
+        icon={faDice}
         title={'Random String Generator'}
         description={
           'Create random strings and/or get the length of a block of text'

@@ -8,6 +8,11 @@ theme: {
     container: {
       center: true,
     },
+    extend: {
+      backgroundImage: {
+        'oldMap': "url('/img/map.jpg')",
+      }
+    }
   },
   plugins: [],
 }

@@ -11,12 +11,15 @@ const RandomPuntanoGenerator = () => {
     loading: true,
   })
 
+  const [getNewPhoto, setGetNewPhoto] = useState(true)
+
   /*
    * Make a new puntano
    */
   const makeNewPuntano = useCallback(async (form) => {
     try {
       setPuntano(await newPuntano(form?.gender || '', form?.age || 18))
+      setGetNewPhoto((prev) => !prev)
     } catch (error) {
       setPuntano({ error: error.toString() })
     }
@@ -45,7 +48,7 @@ const RandomPuntanoGenerator = () => {
         ) : puntano.loading ? (
           <LoadingAnimation />
         ) : (
-          <Puntano puntano={puntano} />
+          <Puntano puntano={puntano} getNewPhoto={getNewPhoto} />
         )}
       </div>
     </Layout>
