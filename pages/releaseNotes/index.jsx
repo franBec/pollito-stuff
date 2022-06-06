@@ -1,16 +1,34 @@
 import Layout from '../../components/_utils/layout'
-import useSWRImmutable from 'swr/immutable'
 import DisplayError from '../../components/_utils/displayError'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
 import Table from '../../components/releaseNotes/table'
+import { useEffect, useState } from 'react'
 
 const index = () => {
-  const gitCommitsURL =
-    'https://api.github.com/repos/franBec/pollito-stuff/commits?per_page=0&sha=bcaa1d1243030ce39ec47b588da18d1ce8367745'
-  const fetcher = (url) => fetch(url).then((res) => res.json())
+  const [data, setData] = useState(null)
+  const [error, setError] = useState(null)
 
-  const { data, error } = useSWRImmutable(gitCommitsURL, fetcher)
+  useEffect(() => {
+    const fetchData = async () => {
+      const resBranches = await fetch(
+        'https://api.github.com/repos/franBec/pollito-stuff/branches'
+      )
+      const dataBranches = await resBranches.json()
+      const sha = dataBranches[0].commit.sha
 
+      const resCommits = await fetch(
+        `https://api.github.com/repos/franBec/pollito-stuff/commits?per_page=0&sha=${sha}`
+      )
+      const dataCommits = await resCommits.json()
+      setData(dataCommits)
+    }
+
+    try {
+      fetchData()
+    } catch (err) {
+      setError(err.toString())
+    }
+  }, [])
   return (
     <Layout
       headTittle="Pollito's stuff | Releases"

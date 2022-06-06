@@ -13,7 +13,7 @@ const Table = ({ data }) => {
 
   return (
     <div className="container rounded-md bg-slate-800 bg-opacity-80 p-5">
-      <table className="table-fix">
+      <table className="table-fix w-full">
         <thead>
           <tr className="bg-slate-600 bg-opacity-50">
             {/* dividing in twelves is so bootstrap */}
