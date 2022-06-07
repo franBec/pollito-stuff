@@ -1,5 +1,5 @@
 import dbConnect from '../../../lib/dbConnect'
-import PuntanoFirstName from '../../../models/PuntanoFirstName'
+import PuntanoFirstName from '../../../models/randomPuntanoGenerator/PuntanoFirstName'
 
 export default async function handler(req, res) {
   await dbConnect()

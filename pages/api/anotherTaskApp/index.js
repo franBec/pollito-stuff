@@ -1,5 +1,5 @@
 import dbConnect from '../../../lib/dbConnect'
-import Task from '../../../models/Task'
+import Task from '../../../models/anotherTaskApp/Task'
 
 export default async function handler(req, res) {
   await dbConnect()
