@@ -12,6 +12,7 @@
     "@react-google-maps/api": "^2.11.8",
     "@turf/bbox": "^6.5.0",
     "@turf/random": "^6.5.0",
+    "@use-it/event-listener": "^0.1.7",
     "babel-preset-next": "^1.4.0",
     "mongoose": "^6.3.3",
     "mongoose-paginate-v2": "^1.6.3",
