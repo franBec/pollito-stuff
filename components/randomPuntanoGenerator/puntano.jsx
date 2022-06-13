@@ -1,5 +1,4 @@
 import PuntanoInfo from './puntanoInfo'
-import DisplayError from '../_utils/displayError'
 import Map from './map/map'
 import Mapnt from './map/mapnt'
 import ATagWithFormat from '../_utils/aTagWithFormat'
@@ -10,21 +9,24 @@ const Puntano = ({ puntano, getNewPhoto }) => {
   const [imageUrl, setImageUrl] = useState('/img/defaultPhoto.png')
 
   useEffect(() => {
-    setImageUrl(
-      `https://fakeface.rest/thumb/view/${new Date().toISOString()}?minimum_age=${randomInt(
-        Number(puntano.age) - 3,
-        Number(puntano.age)
-      )}&maximum_age=${randomInt(
-        Number(puntano.age),
-        Number(puntano.age) + 3
-      )}${
-        puntano.gender === 'M'
-          ? '&gender=male'
-          : puntano.gender === 'F'
-          ? '&gender=female'
-          : ''
-      }`
-    )
+    //asking for gender prevent asking for a photo on page landing
+    if (puntano.gender) {
+      setImageUrl(
+        `https://fakeface.rest/thumb/view/${new Date().toISOString()}?minimum_age=${randomInt(
+          Number(puntano.age) - 2,
+          Number(puntano.age)
+        )}&maximum_age=${randomInt(
+          Number(puntano.age),
+          Number(puntano.age) + 2
+        )}${
+          puntano.gender === 'M'
+            ? '&gender=male'
+            : puntano.gender === 'F'
+            ? '&gender=female'
+            : ''
+        }`
+      )
+    }
   }, [getNewPhoto])
 
   return (
@@ -70,24 +72,24 @@ const Puntano = ({ puntano, getNewPhoto }) => {
               <PuntanoInfo k={'CUIT'} v={puntano.cuit} />
             </div>
           </div>
-          <div className="py-2">
-            {puntano.address.isAddressSimulationEnabled ? (
-              puntano.address.addressError ? (
-                <DisplayError errorMessage={puntano.address.addressError} />
-              ) : (
+
+          {/* asking for gender prevents displaying the map error while loading the first puntano */}
+          {puntano.gender && (
+            <div className="py-2">
+              {puntano.address.isAddressSimulationEnabled ? (
                 <>
                   <PuntanoInfo k={'ADDRESS'} v={puntano.address.address} />
                   <div className="flex justify-center">
-                    <div>
+                    <div className="mt-2">
                       <Map markerPosition={puntano.address.coords} />
                     </div>
                   </div>
                 </>
-              )
-            ) : (
-              <Mapnt />
-            )}
-          </div>
+              ) : (
+                <Mapnt />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>

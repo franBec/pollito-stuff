@@ -1,6 +1,5 @@
 import Layout from '../../components/_utils/layout'
 import useSWR from 'swr'
-import DisplayError from '../../components/_utils/displayError'
 import List from '../../components/anotherTaskApp/list'
 import Swal from 'sweetalert2'
 import ItemModal from '../../components/anotherTaskApp/itemModal'
@@ -9,6 +8,7 @@ import { toast } from 'react-hot-toast'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
 import OrderByCreated from '../../components/_utils/pagination/orderByCreated'
 import { SiAddthis } from 'react-icons/si'
+import PrintErrors from '../../components/_utils/printErrors'
 
 const index = () => {
   /*
@@ -71,11 +71,9 @@ const index = () => {
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(form),
       })
-      if (!res.ok) {
-        throw new Error(
-          'pages/anotherTaskApp/index.jsx -> crudCreate: res.status = ' +
-            res.status
-        )
+      const resjson = await res.json()
+      if (!resjson.success) {
+        throw new Error(resjson.errors.toString())
       }
 
       //we succeed! now we need to manage the pagination stuff
@@ -121,17 +119,13 @@ const index = () => {
 
   const crudReadPage = async (url) => {
     const res = await fetch(url)
-    if (!res.ok) {
-      const error = new Error(
-        'pages->anotherTaskApp->index.jsx: something went wrong fetching the data. res.status = ' +
-          res.status
-      )
-      error.info = await res.json()
-      error.status = res.status
+    const resjson = await res.json()
+    if (!resjson.success) {
+      const error = new Error(resjson.errors.toString())
       throw error
     }
-    const { data } = await res.json()
-    return data
+
+    return resjson.data
   }
 
   /*useSWR returns 3 things
@@ -166,16 +160,15 @@ const index = () => {
           headers: { 'Content-type': 'application/json' },
           body: JSON.stringify(form),
         })
-        if (!res.ok) {
-          throw new Error(
-            'pages/anotherTaskApp/index.jsx -> crudUpdate: res.status = ' +
-              res.status
-          )
+
+        const resjson = await res.json()
+        if (!resjson.success) {
+          const error = new Error(resjson.errors.toString())
+          throw error
         }
 
-        const updatedTask = await res.json()
         const newDocs = data.docs?.map((it) =>
-          it._id !== updatedTask.data._id ? it : updatedTask.data
+          it._id !== resjson.data._id ? it : resjson.data
         )
         const newData = { ...data, docs: newDocs }
         await mutate(newData, false)
@@ -204,11 +197,11 @@ const index = () => {
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(id),
       })
-      if (!res.ok) {
-        throw new Error(
-          'pages/anotherTaskApp/index.jsx -> crudDelete: res.status = ' +
-            res.status
-        )
+
+      const resjson = await res.json()
+      if (!resjson.success) {
+        const error = new Error(resjson.errors.toString())
+        throw error
       }
 
       //if there's nothing to show in this page, go to page-1
@@ -237,7 +230,10 @@ const index = () => {
       introHref="https://youtu.be/HyWYpM_S-2c"
     >
       {error ? (
-        <DisplayError errorMessage={error} />
+        <PrintErrors
+          errors={[error.toString()]}
+          fileName="pages/anotherTaskApp/index.jsx"
+        />
       ) : !data ? (
         <LoadingAnimation />
       ) : (

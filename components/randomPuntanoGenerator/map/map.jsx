@@ -1,5 +1,4 @@
 // https://www.npmjs.com/package/@react-google-maps/api
-import DisplayError from '../../_utils/displayError'
 import LoadingAnimation from '../../_utils/loadingAnimation'
 import {
   GoogleMap,
@@ -10,6 +9,7 @@ import {
 import { useState, useCallback } from 'react'
 import styles from './styles'
 import polygonGeoJson from './sanLuisGeoJson'
+import PrintErrors from '../../_utils/printErrors'
 
 const containerStyle = {
   width: '500px',
@@ -30,7 +30,7 @@ const Map = ({ markerPosition }) => {
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_mapsApiKey,
   })
 
   const onLoad = useCallback(function callback(map) {
@@ -56,7 +56,10 @@ const Map = ({ markerPosition }) => {
   return (
     <>
       {loadError ? (
-        <DisplayError errorMessage={'Something went wrong with Google Maps'} />
+        <PrintErrors
+          errors={['Something went wrong with Google Maps']}
+          fileName="components/randomPuntanoGenerator/map.jsx"
+        />
       ) : !isLoaded ? (
         <LoadingAnimation />
       ) : (

@@ -1,29 +1,62 @@
 import Layout from '../../components/_utils/layout'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
-import DisplayError from '../../components/_utils/displayError'
 import Form from '../../components/randomPuntanoGenerator/form'
 import Puntano from '../../components/randomPuntanoGenerator/puntano'
 import { useCallback, useEffect, useState } from 'react'
-import newPuntano from '../../components/randomPuntanoGenerator/newPuntano'
+import PrintErrors from '../../components/_utils/printErrors'
+
+import { server } from '../../lib/server'
+import { toast } from 'react-hot-toast'
 
 const RandomPuntanoGenerator = () => {
   const [puntano, setPuntano] = useState({
-    loading: true,
+    success: false,
+    errors: [],
+    data: {
+      firstName: '',
+      lastName: '',
+      gender: '',
+      age: 18,
+      birthday: '',
+      dni: '',
+      cuit: '',
+      address: {
+        isAddressSimulationEnabled: false,
+        address: '',
+        coords: '',
+      },
+    },
   })
-
   const [getNewPhoto, setGetNewPhoto] = useState(true)
 
   /*
    * Make a new puntano
    */
+
   const makeNewPuntano = useCallback(async (form) => {
+    toast.promise(toastNewPuntano(form), {
+      loading: 'Loading',
+      success: 'Putano created!',
+      error: 'Something went wrong',
+    })
+  }, [])
+
+  //prettier-ignore
+  const toastNewPuntano = async (form) => {
     try {
-      setPuntano(await newPuntano(form?.gender || '', form?.age || 18))
+      var mapApiKey= process.env.NEXT_PUBLIC_mapsApiKey || ''
+      var updateEnvVarKey = process.env.NEXT_PUBLIC_UpdateEnvVars_mapsAvailableAttempts || ''
+      var gender = form?.gender || ''
+      var age = form?.age || 18
+
+      const res = await fetch(`${server}api/randomPuntanoGenerator/newPuntano?mapApiKey=${mapApiKey}&updateEnvVarKey=${updateEnvVarKey}&gender=${gender}&age=${age}`)
+      const resjson = await res.json()
+      setPuntano(resjson)
       setGetNewPhoto((prev) => !prev)
     } catch (error) {
-      setPuntano({ error: error.toString() })
+      setPuntano({ errors: [error.toString()] })
     }
-  }, [])
+  }
 
   useEffect(() => {
     makeNewPuntano()
@@ -43,12 +76,14 @@ const RandomPuntanoGenerator = () => {
         <div className="p-3">
           <div className="w-full border border-slate-200"></div>
         </div>
-        {puntano.error ? (
-          <DisplayError errorMessage={error} />
-        ) : puntano.loading ? (
-          <LoadingAnimation />
-        ) : (
-          <Puntano puntano={puntano} getNewPhoto={getNewPhoto} />
+
+        <Puntano puntano={puntano.data} getNewPhoto={getNewPhoto} />
+
+        {puntano?.errors?.length > 0 && !puntano?.success && (
+          <PrintErrors
+            errors={puntano.errors}
+            fileName="pages/randomPuntanoGenerator/index.jsx"
+          />
         )}
       </div>
     </Layout>

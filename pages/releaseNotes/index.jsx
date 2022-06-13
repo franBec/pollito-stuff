@@ -1,8 +1,8 @@
 import Layout from '../../components/_utils/layout'
-import DisplayError from '../../components/_utils/displayError'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
 import Table from '../../components/releaseNotes/table'
 import { useEffect, useState } from 'react'
+import PrintErrors from '../../components/_utils/printErrors'
 
 const index = () => {
   const [data, setData] = useState(null)
@@ -42,7 +42,7 @@ const index = () => {
       introHref="https://en.wikipedia.org/wiki/Release_notes"
     >
       {error ? (
-        <DisplayError errorMessage={error} />
+        <PrintErrors errors={[error]} fileName="pages/releaseNotes/index.jsx" />
       ) : !data ? (
         <LoadingAnimation />
       ) : (
