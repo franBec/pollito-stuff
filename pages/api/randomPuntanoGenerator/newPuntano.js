@@ -20,33 +20,19 @@ export default async function handler(req, res){
             
             var gender = query.gender ?? ''
             var age = query.age ?? 18
-            var mapApiKey = query.mapApiKey ?? ''
-            var updateEnvVarKey = query.updateEnvVarKey ?? ''
+            var apiKey = query.apiKey ?? ''
 
             //check for 400
-            if(!mapApiKey){
-                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 400: mapApiKey is null'
-                console.log(log)
-                errors.push(log)
-                return res.status(400).json({ success: false, errors: errors })
-            }
-            if(!updateEnvVarKey){
-                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 400: updateEnvVarKey is null'
+            if(!apiKey){
+                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 400: apiKey is null'
                 console.log(log)
                 errors.push(log)
                 return res.status(400).json({ success: false, errors: errors })
             }
             
             //check for 403
-            if(mapApiKey !== process.env.NEXT_PUBLIC_mapsApiKey){
-                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 403: mapApiKey is not valid'
-                console.log(log)
-                errors.push(log)
-                return res.status(403).json({ success: false, errors: errors })
-            }
-            
-            if(updateEnvVarKey !== process.env.NEXT_PUBLIC_UpdateEnvVars_mapsAvailableAttempts){
-                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 403: updateEnvVarKey is not valid'
+            if(apiKey !== process.env.NEXT_PUBLIC_UpdateEnvVars_mapsAvailableAttempts){
+                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 403: apiKey is not valid'
                 console.log(log)
                 errors.push(log)
                 return res.status(403).json({ success: false, errors: errors })
@@ -94,7 +80,8 @@ export default async function handler(req, res){
             let coords = {}
         
             try{
-                const resFromRandomAddress = await fetch(`${server}api/randomPuntanoGenerator/randomAddress?mapApiKey=${mapApiKey}&updateEnvVarKey=${updateEnvVarKey}`)
+                const mapApiKey = process.env.NEXT_PUBLIC_mapsApiKey ?? ''
+                const resFromRandomAddress = await fetch(`${server}api/randomPuntanoGenerator/randomAddress?mapApiKey=${mapApiKey}&updateEnvVarKey=${apiKey}`)
                 const resjson = await resFromRandomAddress.json()
                 if(!resjson.success){
                     log = new Date().toUTCString() + ` api/randomPuntanoGenerator/newPuntano.js -> success was false after fetching ${server}api/randomPuntanoGenerator/randomAddress`

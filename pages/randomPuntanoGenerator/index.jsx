@@ -44,12 +44,11 @@ const RandomPuntanoGenerator = () => {
   //prettier-ignore
   const toastNewPuntano = async (form) => {
     try {
-      var mapApiKey= process.env.NEXT_PUBLIC_mapsApiKey || ''
-      var updateEnvVarKey = process.env.NEXT_PUBLIC_UpdateEnvVars_mapsAvailableAttempts || ''
+      var apiKey = process.env.NEXT_PUBLIC_UpdateEnvVars_mapsAvailableAttempts || ''
       var gender = form?.gender || ''
       var age = form?.age || 18
 
-      const res = await fetch(`${server}api/randomPuntanoGenerator/newPuntano?mapApiKey=${mapApiKey}&updateEnvVarKey=${updateEnvVarKey}&gender=${gender}&age=${age}`)
+      const res = await fetch(`${server}api/randomPuntanoGenerator/newPuntano?apiKey=${apiKey}&gender=${gender}&age=${age}`)
       const resjson = await res.json()
       setPuntano(resjson)
       setGetNewPhoto((prev) => !prev)
@@ -79,7 +78,7 @@ const RandomPuntanoGenerator = () => {
 
         <Puntano puntano={puntano.data} getNewPhoto={getNewPhoto} />
 
-        {puntano?.errors?.length > 0 && !puntano?.success && (
+        {puntano.errors?.length > 0 && !puntano.success && (
           <PrintErrors
             errors={puntano.errors}
             fileName="pages/randomPuntanoGenerator/index.jsx"
