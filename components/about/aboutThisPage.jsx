@@ -76,12 +76,7 @@ const AboutThisPage = () => {
             I'm interested in Vision API, for the idea of extracting text out of
             images
           </li>
-          <li>
-            I really wanna document all that has be done so far before going any
-            further. Making a '/about' of every main functionality this page has
-            at the moment. Right now documentation is null, just random comments
-            left in the code
-          </li>
+          <li>Keep improving the docunentation</li>
         </ul>
       </GenericCard>
     </>

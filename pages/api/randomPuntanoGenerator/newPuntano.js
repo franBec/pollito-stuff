@@ -1,8 +1,6 @@
 import randomBirthday from '../../../lib/funcs/randomBirthday'
 import randomDNI from '../../../lib/funcs/randomDNI'
 import getCUIT from '../../../lib/funcs/getCUIT'
-import yn from 'yn'
-import castBirthday from '../../../lib/funcs/castDateTo_dd_mm_yyyy'
 
 import { server } from '../../../lib/server'
 
@@ -29,13 +27,48 @@ export default async function handler(req, res){
                 errors.push(log)
                 return res.status(400).json({ success: false, errors: errors })
             }
-            
+
+            //check if apiKey===password123
+            if(apiKey==='password123'){
+            //returns the sample address, a place where I used to live
+                return res
+                .status(200)
+                .json({
+                    success: true,
+                    errors: [new Date().toUTCString()+' This is a sample Puntano (notice the birthday is the current date). To really get a random Puntano, you need a valid apiKey. If you want one, contact me linkedin.com/in/franco-becvort/'],
+                    data: {
+                        firstName: "Juan",
+                        lastName: "Pérez",
+                        gender: "M",
+                        age: 18,
+                        birthday: new Date().toISOString(),
+                        dni: 99999999,
+                        cuit: "99999999999",
+                        address: {
+                            address: "Estado de Israel 1472",
+                            coords: {
+                                lat: -33.2925125,
+                                lng: -66.3386712
+                            }
+                        }
+                    }
+                })
+            }
+
             //check for 403
-            if(apiKey !== process.env.NEXT_PUBLIC_UpdateEnvVars_mapsAvailableAttempts){
+            if(apiKey !== process.env.NEXT_PUBLIC_NewPuntano_apiKey){
                 log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 403: apiKey is not valid'
                 console.log(log)
                 errors.push(log)
                 return res.status(403).json({ success: false, errors: errors })
+            }
+
+            //age control
+            if(isNaN(Number(age)) || Number(age)<1 || Number(age)>80){
+                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/newPuntano.js -> GET error 400: age is not a valid value (a number between 1 and 80). Defaulting to age=18'
+                console.log(log)
+                errors.push(log)
+                age = 18
             }
 
             var res_firstName = ''
@@ -75,13 +108,11 @@ export default async function handler(req, res){
             const cuit = getCUIT(dni.toString(), res_gender)
         
             //simultate address
-            const isAddressSimulationEnabled = yn(process.env.NEXT_PUBLIC_RandomPuntanoGenerator_UseMaps)
             let address = ''
             let coords = {}
         
             try{
-                const mapApiKey = process.env.NEXT_PUBLIC_mapsApiKey ?? ''
-                const resFromRandomAddress = await fetch(`${server}api/randomPuntanoGenerator/randomAddress?mapApiKey=${mapApiKey}&updateEnvVarKey=${apiKey}`)
+                const resFromRandomAddress = await fetch(`${server}api/randomPuntanoGenerator/randomAddress?apiKey=${process.env.NEXT_PUBLIC_RandomAddress_apiKey}`)
                 const resjson = await resFromRandomAddress.json()
                 if(!resjson.success){
                     log = new Date().toUTCString() + ` api/randomPuntanoGenerator/newPuntano.js -> success was false after fetching ${server}api/randomPuntanoGenerator/randomAddress`
@@ -111,11 +142,10 @@ export default async function handler(req, res){
                         lastName: res_lastName,
                         gender: res_gender,
                         age,
-                        birthday: castBirthday(birthday),
+                        birthday,
                         dni,
                         cuit,
                         address:{
-                            isAddressSimulationEnabled,
                             address,
                             coords,
                         },

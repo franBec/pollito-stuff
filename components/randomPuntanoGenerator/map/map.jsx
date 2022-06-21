@@ -30,7 +30,7 @@ const Map = ({ markerPosition }) => {
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_mapsApiKey,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_mapsApiKey,
   })
 
   const onLoad = useCallback(function callback(map) {

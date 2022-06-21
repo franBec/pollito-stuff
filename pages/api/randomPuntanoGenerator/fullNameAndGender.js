@@ -57,6 +57,13 @@ export default async function handler(req, res) {
                 success = false
             }
 
+            if(!res_gender){
+                log = new Date().toUTCString() + ' api/randomPuntanoGenerator/fullNameAndGender.js -> GET error 500: gender is null'
+                console.log(log)
+                errors.push(log)
+                success = false
+            }
+
             const data = {
                 success: success,
                 data: {

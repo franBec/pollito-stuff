@@ -44,7 +44,7 @@ const RandomPuntanoGenerator = () => {
   //prettier-ignore
   const toastNewPuntano = async (form) => {
     try {
-      var apiKey = process.env.NEXT_PUBLIC_UpdateEnvVars_mapsAvailableAttempts || ''
+      var apiKey = process.env.NEXT_PUBLIC_NewPuntano_apiKey || ''
       var gender = form?.gender || ''
       var age = form?.age || 18
 

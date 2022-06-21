@@ -41,6 +41,11 @@ const AboutMe = () => {
             text="Computer Engineering Student at the National University of San Luis"
             format="li"
           />
+          <ATagWithFormat
+            goto="https://drive.google.com/drive/folders/1zSxWnLsOgo6mX-Mc5iZ7H9VTqfnlc_z6?usp=sharing"
+            text="Here are some notes taken from class (Resúmenes by Pollito). These are long documents I made for studying purporses"
+            format="li"
+          />
           <br />
           2019
           <ATagWithFormat

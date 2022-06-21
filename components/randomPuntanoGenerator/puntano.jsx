@@ -3,21 +3,24 @@ import Map from './map/map'
 import Mapnt from './map/mapnt'
 import ATagWithFormat from '../_utils/aTagWithFormat'
 import randomInt from '../../lib/funcs/randomInt'
+import castBirthday from '../../lib/funcs/castDateTo_dd_mm_yyyy'
 import { useEffect, useState } from 'react'
+import yn from 'yn'
 
 const Puntano = ({ puntano, getNewPhoto }) => {
   const [imageUrl, setImageUrl] = useState('/img/defaultPhoto.png')
-
+  const [birthday, setBirthday] = useState('-')
   useEffect(() => {
-    //asking for gender prevent asking for a photo on page landing
+    //asking for gender prevent doing unnecesary stuff on page landing
     if (puntano.gender) {
+      //fetch a photo
       setImageUrl(
         `https://fakeface.rest/thumb/view/${new Date().toISOString()}?minimum_age=${randomInt(
-          Number(puntano.age) - 2,
+          Number(puntano.age) - 1,
           Number(puntano.age)
         )}&maximum_age=${randomInt(
           Number(puntano.age),
-          Number(puntano.age) + 2
+          Number(puntano.age) + 1
         )}${
           puntano.gender === 'M'
             ? '&gender=male'
@@ -26,6 +29,13 @@ const Puntano = ({ puntano, getNewPhoto }) => {
             : ''
         }`
       )
+
+      //cast birthday to dd/mm/yyyy
+      try {
+        setBirthday(castBirthday(puntano.birthday))
+      } catch (err) {
+        setBirthday('-')
+      }
     }
   }, [getNewPhoto])
 
@@ -64,10 +74,10 @@ const Puntano = ({ puntano, getNewPhoto }) => {
                     ? 'Male'
                     : puntano.gender === 'F'
                     ? 'Female'
-                    : 'Indefinite'
+                    : '-'
                 }
               />
-              <PuntanoInfo k={'BIRTHDAY'} v={puntano.birthday} />
+              <PuntanoInfo k={'BIRTHDAY'} v={birthday} />
               <PuntanoInfo k={'DNI'} v={puntano.dni} />
               <PuntanoInfo k={'CUIT'} v={puntano.cuit} />
             </div>
@@ -76,15 +86,17 @@ const Puntano = ({ puntano, getNewPhoto }) => {
           {/* asking for gender prevents displaying the map error while loading the first puntano */}
           {puntano.gender && (
             <div className="py-2">
-              {puntano.address.isAddressSimulationEnabled ? (
-                <>
-                  <PuntanoInfo k={'ADDRESS'} v={puntano.address.address} />
-                  <div className="flex justify-center">
-                    <div className="mt-2">
-                      <Map markerPosition={puntano.address.coords} />
+              {yn(process.env.NEXT_PUBLIC_RandomPuntanoGenerator_UseMaps) ? (
+                puntano.address.address && (
+                  <>
+                    <PuntanoInfo k={'ADDRESS'} v={puntano.address.address} />
+                    <div className="flex justify-center">
+                      <div className="mt-2">
+                        <Map markerPosition={puntano.address.coords} />
+                      </div>
                     </div>
-                  </div>
-                </>
+                  </>
+                )
               ) : (
                 <Mapnt />
               )}
