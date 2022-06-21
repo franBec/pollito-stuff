@@ -76,7 +76,7 @@ const AboutThisPage = () => {
             I'm interested in Vision API, for the idea of extracting text out of
             images
           </li>
-          <li>Keep improving the docunentation</li>
+          <li>Keep improving the documentation</li>
         </ul>
       </GenericCard>
     </>

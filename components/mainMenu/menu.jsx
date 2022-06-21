@@ -55,7 +55,7 @@ const Menu = () => {
           <Card
             icon={faNoteSticky}
             title={'Release Notes'}
-            description={'The commits that make up this proyect'}
+            description={'The commits that make up this project'}
             goTo={'/releaseNotes'}
           />
         </div>

@@ -19,7 +19,7 @@ const AccordionItem = ({
     <>
       <div
         onClick={() => handleSetIndex(index)}
-        className="mt-2 flex w-full justify-between rounded bg-gradient-to-r from-slate-800 to-sky-900 p-2"
+        className="mt-2 flex w-full cursor-pointer justify-between rounded bg-gradient-to-r from-slate-800 to-sky-900 p-2"
       >
         <div className="flex">
           <div className="text-xl font-bold">{title}</div>
