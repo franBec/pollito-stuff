@@ -30,7 +30,7 @@ const AboutMe = () => {
           <br />
           2011 - 2016
           <ATagWithFormat
-            goto="https://drive.google.com/file/d/10bYZN6nPLOHhRuUT6t665rS2GMsJGMhk/view?usp=sharing"
+            goto="https://drive.google.com/file/d/12X09mXTiV4u1rUHvMpcEqR_XzL1tIOoA/view?usp=sharing"
             text="English language training"
             format="li"
           />
@@ -44,6 +44,11 @@ const AboutMe = () => {
           <ATagWithFormat
             goto="https://drive.google.com/drive/folders/1zSxWnLsOgo6mX-Mc5iZ7H9VTqfnlc_z6?usp=sharing"
             text="Here are some notes taken from class (Resúmenes by Pollito). These are long documents I made for studying purporses"
+            format="li"
+          />
+          <ATagWithFormat
+            goto="https://drive.google.com/drive/folders/1gVO1ehsbmi1hXpiDRUBN-bGELazKcGyH?usp=sharing"
+            text="And here are some 'kinda scientific formal and academic' documents I had to made to proof I've learn the content taught"
             format="li"
           />
           <br />
