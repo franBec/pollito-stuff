@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { BiMailSend } from 'react-icons/bi'
+import { HiDocumentText } from 'react-icons/hi'
 
 const PersonalInfoCard = () => {
   return (
@@ -14,8 +16,10 @@ const PersonalInfoCard = () => {
             className="rounded-full"
           />
           <h5 className="mb-1 text-xl font-medium">Franco Exequiel Becvort</h5>
-          <span className="text-sm text-slate-300">Web Developer</span>
-          <div className="mt-2 flex space-x-3 lg:mt-4">
+          <span className="text-sm text-slate-300">
+            Full Stack Web Developer
+          </span>
+          <div className="mt-2 flex space-x-2 lg:mt-4">
             <a
               href="https://www.linkedin.com/in/franco-becvort/"
               target="_blank"
@@ -35,7 +39,15 @@ const PersonalInfoCard = () => {
               target="_blank"
               className="inline-flex items-center rounded-lg border border-gray-300 bg-white py-2 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
             >
-              Mail me!
+              <BiMailSend /> Mail
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1TIDam9E8cvcidaCUeJ6HJzqeVztHRbM0/view?usp=sharing"
+              target="_blank"
+              className="inline-flex items-center rounded-lg border border-gray-300 bg-white py-2 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            >
+              <HiDocumentText />
+              CV
             </a>
           </div>
         </div>

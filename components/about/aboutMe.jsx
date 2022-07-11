@@ -1,46 +1,77 @@
 import Iframe from 'react-iframe'
-import yearsSinceDate from '../../lib/funcs/yearsSinceDate'
 import GenericCard from './genericCard'
 import ATagWithFormat from '../_utils/aTagWithFormat'
 import { BsStars } from 'react-icons/bs'
+
+import Item_workXP from './item_workXP'
+import Item_education from './item_education'
+import Hr from './../_utils/hr'
 
 const AboutMe = () => {
   return (
     <>
       <GenericCard title={'Who am I?'}>
         <p>
-          Hello! I'm Franco (Pollito), a {yearsSinceDate('1999-04-08')} years
-          old programmer from Argentina 🧉. I studied Computer Engineering from
-          2018 to 2021, and started working in the web development area in
-          mid-late 2021
+          I do web pages development from the first lines of code to the
+          deployment. Working in teams using agile methodologies. Comfortable
+          written and oral skills in English. Interested in Cloud application
+          development
         </p>
       </GenericCard>
-      <GenericCard title={'Academic background'}>
-        <p className="border-2 border-dashed p-2 text-center text-sm">
-          You can click on each item to check more info about it
-        </p>
-        <br />
-        <>
+      <GenericCard title={'Work experience'}>
+        <Item_workXP
+          charge="Full Stack Web Developer"
+          place="RunaID"
+          period="september 2021 - present"
+        >
+          Main developer behind government projects (mostly the{' '}
           <ATagWithFormat
-            goto="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/niveles-educativos"
-            text="Argentine mandatory education (educación incial, primaria,
-        secundaria)"
-            format="li"
+            goto="https://sigem.sanluislaciudad.gob.ar/sigem/"
+            text="SIGEM web page"
+            format="underline"
           />
-          <br />
-          2011 - 2016
+          ). MVC architecture, SQL databases, QA and Production deployments
+        </Item_workXP>
+        <Hr padding={3} />
+        <Item_workXP
+          charge="Tutor"
+          place="National University of San Luis"
+          period="february 2021 - march 2021"
+        >
+          Tutor of the course{' '}
           <ATagWithFormat
-            goto="https://drive.google.com/file/d/12X09mXTiV4u1rUHvMpcEqR_XzL1tIOoA/view?usp=sharing"
-            text="English language training"
-            format="li"
-          />
-          <br />
-          2018 - 2021
+            goto="https://fmn.unsl.edu.ar/curso-de-ingreso-2021-agradecimiento-a-docentes-y-tutores-del-curso-comprension-de-texto/"
+            text='"Text Comprehension"'
+            format="underline"
+          />{' '}
+          of the 2021 Entrance to the Faculty of Physical, Mathematical and
+          Natural Sciences. I was in charge of 40 applicants
+        </Item_workXP>
+        <Hr padding={3} />
+        <Item_workXP
+          charge="Academic Member"
+          place="National University of San Luis"
+          period="june 2020 - june 2022"
+        >
+          Member of{' '}
           <ATagWithFormat
-            goto="https://drive.google.com/file/d/1lE_3cnoPvAi6lI8ofx9adbCLKPuDmDYR/view?usp=sharing"
-            text="Computer Engineering Student at the National University of San Luis"
-            format="li"
+            goto="https://drive.google.com/file/d/1RDbr-G7W4yIhd4W4rOOYkyEZVzoDUQ8F/view?usp=sharing"
+            text='"Risks in the Network"'
+            format="underline"
           />
+          , a social interest project extension of the National University of
+          San Luis (Page 26)
+        </Item_workXP>
+      </GenericCard>
+      <GenericCard title={'Education'}>
+        <Item_education
+          education="Computer Engineering"
+          place="National University of San Luis"
+          period="2018 - 2021"
+          completion="64.44% Completed"
+          certLink="https://drive.google.com/file/d/1lE_3cnoPvAi6lI8ofx9adbCLKPuDmDYR/view?usp=sharing"
+        />
+        <div className="mt-2 pl-6">
           <ATagWithFormat
             goto="https://drive.google.com/drive/folders/1zSxWnLsOgo6mX-Mc5iZ7H9VTqfnlc_z6?usp=sharing"
             text="Here are some notes taken from class (Resúmenes by Pollito). These are long documents I made for studying purporses"
@@ -51,96 +82,81 @@ const AboutMe = () => {
             text="And here are some 'kinda scientific formal and academic' documents I had to made to proof I've learn the content taught"
             format="li"
           />
-          <br />
-          2019
-          <ATagWithFormat
-            goto="https://drive.google.com/file/d/1ZRzNwzuWxHUDomRWSYBb9L4XVDN-y1eO/view?usp=sharing"
-            text='Attendant at "The First Computer Science Conference" organized by
-        the Student Center of the Faculty of Physical, Mathematical and
-        Natural Sciences'
-            format="li"
-          />
-          <ATagWithFormat
-            goto="https://drive.google.com/file/d/1YONsZaEpfZCX92k0OfuYJX0h6ACV_UEQ/view?usp=sharing"
-            text='Student at "The Fifth Computer School of the Department of
-        Computer Science", in the field of the Faculty of Physical,
-        Mathematical and Natural Sciences (Pages 10 & 11)'
-            format="li"
-          />
-          <br />
-          2020 - 2022
-          <ATagWithFormat
-            goto="https://drive.google.com/file/d/1RDbr-G7W4yIhd4W4rOOYkyEZVzoDUQ8F/view?usp=sharing"
-            text='Member of "Risks in the Network", a social interest project extension of the
-        National University of San Luis (Page 26)'
-            format="li"
-          />
-          <br />
-          2021
-          <ATagWithFormat
-            goto="https://fmn.unsl.edu.ar/curso-de-ingreso-2021-agradecimiento-a-docentes-y-tutores-del-curso-comprension-de-texto/"
-            text='Tutor of the course "Text Comprehension" of the 2021 Entrance to
-        the Faculty of Physical, Mathematical and Natural Sciences (yep, sadly the only evidence left is a post in the uni webpage)'
-            format="li"
-          />
-          <br />
-          2022
-          <ATagWithFormat
-            goto="https://udemy-certificate.s3.amazonaws.com/pdf/UC-f3e555f6-20e5-4ad9-a4a1-fcd6982930f1.pdf"
-            text="Practical SCRUM in Software Projects"
-            format="li"
-          />
-          <ATagWithFormat
-            goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1821618?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-            text="Introduction to Digital Transformation with Google Cloud"
-            format="li"
-          />
-          <ATagWithFormat
-            goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823577?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-            text="Infrastructure and Application Modernization with Google Cloud"
-            format="li"
-          />
-          <ATagWithFormat
-            goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823373?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-            target="_blank"
-            text="Innovating with Data and Google Cloud"
-            format="li"
-          />
-          <ATagWithFormat
-            goto="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1825709?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-            target="_blank"
-            text="Understanding Google Cloud Security and Operations"
-            format="li"
-          />
-          <ATagWithFormat
-            goto="https://www.credential.net/286b807f-51d1-41d0-871a-e914af7fb87d"
-            text="Cloud Digital Leader"
-            format="li"
-          />
-        </>
+        </div>
+        <Hr padding={3} />
+        <Item_education
+          education="English Language Training"
+          place="Cambridge Institute"
+          period="2011 - 2016"
+          completion="Complete"
+          certLink="https://drive.google.com/file/d/12X09mXTiV4u1rUHvMpcEqR_XzL1tIOoA/view?usp=sharing"
+        />
       </GenericCard>
-      <GenericCard title={'Work experience'}>
-        <p>
-          Since September 2021, I am part of the development team in{' '}
-          <ATagWithFormat
-            goto="https://www.runaid.com.ar/"
-            text="RunaID"
-            format="underline"
-          />
-          , becoming the main developer behind{' '}
-          <ATagWithFormat
-            goto="https://sigem.sanluislaciudad.gob.ar/sigem/"
-            text="SIGEM web page"
-            format="underline"
-          />
-          , where together with a great team we carry out development tasks of
-          new functionalities and improvements of existing features
-        </p>
+      <GenericCard title={'Certifications and badges'}>
+        <Item_education
+          education="Node.js: create a full stack system from zero to deploy"
+          place="Udemy"
+          period="july 2022"
+          certLink="https://udemy-certificate.s3.amazonaws.com/pdf/UC-d1127a99-da0a-4e4a-a2b1-e12eb381a394.pdf"
+        />
         <br />
-        <p className="text-sm">
-          **Random fact: During summer 2017 I was a waiter at a San Luis City
-          café ☕
-        </p>
+        <Item_education
+          education="Cloud Digital Leader"
+          place="Google"
+          period="may 2022"
+          certLink="https://www.credential.net/286b807f-51d1-41d0-871a-e914af7fb87d"
+        />
+        <br />
+        <Item_education
+          education="Understanding Google Cloud Security and Operations"
+          place="Google"
+          period="april 2022"
+          certLink="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1825709?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+        />
+        <br />
+        <Item_education
+          education="Innovating with Data and Google Cloud"
+          place="Google"
+          period="april 2022"
+          certLink="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823373?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+        />
+        <br />
+        <Item_education
+          education="Infrastructure and Application Modernization with Google Cloud"
+          place="Google"
+          period="april 2022"
+          certLink="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1823577?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+        />
+        <br />
+        <Item_education
+          education="Introduction to Digital Transformation with Google Cloud"
+          place="Google"
+          period="april 2022"
+          certLink="https://www.cloudskillsboost.google/public_profiles/b4d1ce00-019d-4ec0-8446-c2f412dd0cd1/badges/1821618?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+        />
+        <br />
+        <Item_education
+          education="Practical SCRUM in Software Projects"
+          place="Udemy"
+          period="april 2022"
+          certLink="https://udemy-certificate.s3.amazonaws.com/pdf/UC-f3e555f6-20e5-4ad9-a4a1-fcd6982930f1.pdf"
+        />
+        <br />
+        <Item_education
+          education='Student at "The Fifth Computer School of the Department of
+          Computer Science", in the field of the Faculty of Physical,
+          Mathematical and Natural Sciences (Pages 10 & 11)'
+          place="National University of San Luis"
+          period="december 2019"
+          certLink="https://drive.google.com/file/d/1YONsZaEpfZCX92k0OfuYJX0h6ACV_UEQ/view?usp=sharing"
+        />
+        <br />
+        <Item_education
+          education='Attendant at "The First Computer Science Conference"'
+          place="National University of San Luis"
+          period="november 2019"
+          certLink="https://drive.google.com/file/d/1ZRzNwzuWxHUDomRWSYBb9L4XVDN-y1eO/view?usp=sharing"
+        />
       </GenericCard>
       <GenericCard title={"What technologies I'm familiar with?"}>
         <div className="border-2 border-dashed p-4 leading-normal">
