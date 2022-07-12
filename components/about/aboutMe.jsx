@@ -20,7 +20,7 @@ const AboutMe = () => {
       </GenericCard>
       <GenericCard title={'Work experience'}>
         <Item_workXP
-          charge="Full Stack Web Developer"
+          charge="Backend Developer"
           place="RunaID"
           period="september 2021 - present"
         >

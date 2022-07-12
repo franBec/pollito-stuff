@@ -16,9 +16,7 @@ const PersonalInfoCard = () => {
             className="rounded-full"
           />
           <h5 className="mb-1 text-xl font-medium">Franco Exequiel Becvort</h5>
-          <span className="text-sm text-slate-300">
-            Full Stack Web Developer
-          </span>
+          <span className="text-sm text-slate-300">Backend Developer</span>
           <div className="mt-2 flex space-x-2 lg:mt-4">
             <a
               href="https://www.linkedin.com/in/franco-becvort/"
