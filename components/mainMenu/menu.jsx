@@ -6,6 +6,7 @@ import { faPersonCircleQuestion } from '@fortawesome/free-solid-svg-icons'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { faMugHot } from '@fortawesome/free-solid-svg-icons'
 import { faNoteSticky } from '@fortawesome/free-solid-svg-icons'
+import { faGamepad } from '@fortawesome/free-solid-svg-icons'
 
 const Menu = () => {
   return (
@@ -34,6 +35,12 @@ const Menu = () => {
             title={'Random Puntano Generator'}
             description={'Create a random person from San Luis... just because'}
             goTo={'/randomPuntanoGenerator'}
+          />
+          <Card
+            icon={faGamepad}
+            title={'Pokemon'}
+            description={'Gotta catch em all!'}
+            goTo={'/pokemon'}
           />
         </div>
       </div>

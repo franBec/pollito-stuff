@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { FaLessThan } from 'react-icons/fa'
 
-const HomeButton = () => {
+const HomeButton = ({ goTo }) => {
   return (
     <footer>
-      <Link href="/">
+      <Link href={goTo ? goTo : '/'}>
         <button className="flex items-center rounded bg-gray-800 py-3 px-4 text-base leading-tight text-gray-400 hover:bg-gray-700 hover:text-white">
           <div>
             <FaLessThan className="mr-2" />

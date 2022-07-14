@@ -13,6 +13,7 @@ const Layout = ({
   introSignature,
   introHref,
   isThisHome,
+  backHref,
 }) => {
   return (
     <>
@@ -32,7 +33,9 @@ const Layout = ({
             goTo={introHref}
           />
           {children}
-          <div className="mt-4">{!isThisHome && <HomeButton />}</div>
+          <div className="mt-4">
+            {!isThisHome && <HomeButton goTo={backHref} />}
+          </div>
         </FadeIn>
       </main>
 
