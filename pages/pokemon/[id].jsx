@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import { toast } from 'react-hot-toast'
 
-import Layout from '../../components/_utils/layout'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
 import PrintErrors from '../../components/_utils/printErrors'
 
 import CardDetail from '../../components/pokemon/cardDetail'
+import LayoutMetadata from '../../components/layout/config/pokemon/id'
 
 export default () => {
   const router = useRouter()
@@ -40,15 +40,8 @@ export default () => {
   }, [router.isReady])
 
   return (
-    <Layout
-      headTittle="Pollito's stuff | Pokemon"
-      navTitle={'Pokemon 🕹️'}
-      introDescriptionRows={['El Equipo Rocket ha sido vencido otra vez']}
-      introSignature="The rocket team, in Spanich Latin dub"
-      introHref="https://youtu.be/GB1bEnXjqQc"
-      isThisHome={false}
-      backHref={'/pokemon'}
-    >
+    <>
+      <LayoutMetadata />
       <div className="flex place-content-center">
         {!data ? (
           !errors.length ? (
@@ -62,6 +55,6 @@ export default () => {
           </>
         )}
       </div>
-    </Layout>
+    </>
   )
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Layout from '../../../components/_utils/layout'
 import useSound from 'use-sound'
+import LayoutMetadata from '../../../components/layout/config/easterEggs/micagay'
 
 const index = () => {
   const yesImGay = "Yes, I'm gay"
@@ -25,20 +25,15 @@ const index = () => {
   }
 
   return (
-    <Layout
-      headTittle="Pollito's stuff | r u gay"
-      introDescriptionRows={[
-        'Should I explicitly say that this is not to be taken seriously?',
-        "Everyone's so snowflake lately...",
-        'Thnks to Mica for asking this, so much fun',
-      ]}
-      introSignature="with <3, from Pollito to Mica"
-      introHref="https://instagram.com/mi.mi_ca?igshid=YmMyMTA2M2Y="
-      isThisHome={true}
-    >
+    <>
+      <LayoutMetadata />
       <div className="flex flex-col items-center">
         <div>
-          <img src="/img/the-rock.gif" alt="gif" width="200" />
+          <img
+            src="/img/easterEggs/micagay/the-rock.gif"
+            alt="gif"
+            width="200"
+          />
         </div>
 
         <div className="mt-2 w-60 overflow-hidden bg-white shadow-lg">
@@ -47,25 +42,29 @@ const index = () => {
               ARE YOU GAY?
             </h4>
             <div className="flex justify-between text-black">
-              <button
-                className="border border-black bg-slate-300 p-2"
-                onMouseEnter={(e) => handleMouseIn('left')}
-                onMouseLeave={handleMouseOut}
-              >
-                {gayBtn == 'left' ? yesImGay : no}
-              </button>
-              <button
-                className="border border-black bg-slate-300 p-2"
-                onMouseEnter={(e) => handleMouseIn('right')}
-                onMouseLeave={handleMouseOut}
-              >
-                {gayBtn == 'right' ? yesImGay : no}
-              </button>
+              <a href="https://youtu.be/ajlkhFnz8eo" target="_blank">
+                <button
+                  className="border border-black bg-slate-300 p-2"
+                  onMouseEnter={(e) => handleMouseIn('left')}
+                  onMouseLeave={handleMouseOut}
+                >
+                  {gayBtn == 'left' ? yesImGay : no}
+                </button>
+              </a>
+              <a href="https://youtu.be/ajlkhFnz8eo" target="_blank">
+                <button
+                  className="border border-black bg-slate-300 p-2"
+                  onMouseEnter={(e) => handleMouseIn('right')}
+                  onMouseLeave={handleMouseOut}
+                >
+                  {gayBtn == 'right' ? yesImGay : no}
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

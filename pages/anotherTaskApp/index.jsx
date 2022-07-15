@@ -1,4 +1,3 @@
-import Layout from '../../components/_utils/layout'
 import useSWR from 'swr'
 import List from '../../components/anotherTaskApp/list'
 import Swal from 'sweetalert2'
@@ -9,6 +8,7 @@ import LoadingAnimation from '../../components/_utils/loadingAnimation'
 import OrderByCreated from '../../components/_utils/pagination/orderByCreated'
 import { SiAddthis } from 'react-icons/si'
 import PrintErrors from '../../components/_utils/printErrors'
+import LayoutMetadata from '../../components/layout/config/anotherTaskApp'
 
 const index = () => {
   /*
@@ -218,17 +218,8 @@ const index = () => {
   }
 
   return (
-    <Layout
-      headTittle="Pollito's stuff | Another Task App"
-      navTitle={'Another Task App ❌✅'}
-      introDescriptionRows={[
-        'Yes, another task managing app',
-        'with CRUD operations and pagination in MongoDB & mongoose',
-      ]}
-      introSignature="Pollito, while escaping React tutorial hell"
-      isThisHome={false}
-      introHref="https://youtu.be/HyWYpM_S-2c"
-    >
+    <>
+      <LayoutMetadata />
       {error ? (
         <PrintErrors
           errors={[error.toString()]}
@@ -272,7 +263,7 @@ const index = () => {
           )}
         </>
       )}
-    </Layout>
+    </>
   )
 }
 

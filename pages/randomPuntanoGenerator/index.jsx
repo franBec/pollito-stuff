@@ -1,12 +1,13 @@
-import Layout from '../../components/_utils/layout'
-import LoadingAnimation from '../../components/_utils/loadingAnimation'
-import Form from '../../components/randomPuntanoGenerator/form'
-import Puntano from '../../components/randomPuntanoGenerator/puntano'
 import { useCallback, useEffect, useState } from 'react'
-import PrintErrors from '../../components/_utils/printErrors'
-
 import { server } from '../../lib/server'
 import { toast } from 'react-hot-toast'
+
+import Form from '../../components/randomPuntanoGenerator/form'
+import Puntano from '../../components/randomPuntanoGenerator/puntano'
+import PrintErrors from '../../components/_utils/printErrors'
+import Hr from '../../components/_utils/hr'
+
+import LayoutMetadata from '../../components/layout/config/randomPuntanoGenerator'
 
 const RandomPuntanoGenerator = () => {
   const [puntano, setPuntano] = useState({
@@ -62,19 +63,11 @@ const RandomPuntanoGenerator = () => {
   }, [makeNewPuntano])
 
   return (
-    <Layout
-      headTittle="Pollito's stuff | Random Puntano Generator"
-      navTitle={'Random Puntano Generator 🦙'}
-      introDescriptionRows={['Something/Someone from San Luis.']}
-      introSignature="Pollito, a not puntano defining a puntano"
-      isThisHome={false}
-      introHref="https://en.wikipedia.org/wiki/San_Luis,_Argentina"
-    >
+    <>
+      <LayoutMetadata />
       <div className="container rounded-md bg-slate-800 bg-opacity-80 px-5 py-1">
         <Form makeNewPuntano={makeNewPuntano} />
-        <div className="p-3">
-          <div className="w-full border border-slate-200"></div>
-        </div>
+        <Hr padding={3} />
 
         <Puntano puntano={puntano.data} getNewPhoto={getNewPhoto} />
 
@@ -85,7 +78,7 @@ const RandomPuntanoGenerator = () => {
           />
         )}
       </div>
-    </Layout>
+    </>
   )
 }
 

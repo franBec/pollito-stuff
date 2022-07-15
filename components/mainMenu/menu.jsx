@@ -38,8 +38,8 @@ const Menu = () => {
           />
           <Card
             icon={faGamepad}
-            title={'Pokemon'}
-            description={'Gotta catch em all!'}
+            title={'Pokemon (only 1st Gen)'}
+            description={"Gotta catch 'em all!"}
             goTo={'/pokemon'}
           />
         </div>

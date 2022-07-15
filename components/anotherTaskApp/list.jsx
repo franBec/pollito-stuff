@@ -1,4 +1,4 @@
-import FadeIn from '../_utils/fadeIn'
+import FadeIn from '../layout/fadeIn'
 import Item from './item'
 import PaginateNavbar from '../_utils/pagination/paginateNavbar'
 

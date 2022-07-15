@@ -1,8 +1,10 @@
-import Layout from '../../components/_utils/layout'
 import Form from '../../components/randomStringGenerator/form'
 import TextArea from '../../components/randomStringGenerator/textArea'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import LayoutMetadata from '../../components/layout/config/randomStringGenerator'
+
+import Hr from '../../components/_utils/hr'
 
 const RandomStringGenerator = () => {
   const loremIpsum =
@@ -90,18 +92,8 @@ const RandomStringGenerator = () => {
   }
 
   return (
-    <Layout
-      headTittle="Pollito's stuff | Random String Generator"
-      navTitle={'Random String Generator 🎲'}
-      introDescriptionRows={[
-        'In work, I usually need to test length of form textfields and databases columns',
-        'So, why typing random stuff and counting in Sublime text',
-        'When a page can do it for me?',
-      ]}
-      introSignature="Pollito, while overengineering a simple task"
-      isThisHome={false}
-      introHref="https://en.wikipedia.org/wiki/Overengineering"
-    >
+    <>
+      <LayoutMetadata />
       <div className="container rounded-md bg-slate-800 bg-opacity-80 px-5 py-1">
         <Form
           generateRandomString={generateRandomString}
@@ -111,9 +103,7 @@ const RandomStringGenerator = () => {
           allowedLength={allowedLength}
           handleLenghtInputOnChange={handleLenghtInputOnChange}
         />
-        <div className="pt-3">
-          <div className="w-full border border-slate-200"></div>
-        </div>
+        <Hr padding={3} />
         <TextArea
           count={count}
           text={text}
@@ -121,7 +111,7 @@ const RandomStringGenerator = () => {
           triggerAchievement={triggerAchievement}
         />
       </div>
-    </Layout>
+    </>
   )
 }
 

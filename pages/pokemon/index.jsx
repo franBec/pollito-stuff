@@ -1,13 +1,16 @@
-import Layout from '../../components/_utils/layout'
-import CardSimple from '../../components/pokemon/cardSimple'
 import PrintErrors from '../../components/_utils/printErrors'
 import LoadingAnimation from '../../components/_utils/loadingAnimation'
-import PaginateNavbar from '../../components/_utils/pagination/paginateNavbar'
 
 import { useState } from 'react'
 import useSWRImmutable from 'swr/immutable'
+import LayoutMetadata from '../../components/layout/config/pokemon'
+
+import ResultGrid from '../../components/pokemon/resultGrid'
+import Filter from '../../components/pokemon/filter'
+import NotFound from '../../components/pokemon/notFound'
 
 const index = () => {
+  //pagination
   const [currentPage, updateCurrentPage] = useState(1)
   const shouldUpdatePageNumber = (number) => {
     if (
@@ -20,47 +23,30 @@ const index = () => {
   }
 
   //filter
-  const [searchText, setSearchText] = useState('')
-  const filterPokemons = (e) => {
-    setSearchText(e.target.value)
+  const [filter, setFilter] = useState({ name: '', sort: 'id_asc' })
+
+  const updateFilter = (filterUpdated) => {
+    setFilter(filterUpdated) //useSWRImmutable detects a change and re-trigger
   }
 
   const fetchPokemons = async (url) => {
     const res = await fetch(url)
     const resjson = await res.json()
-    if (!resjson.success) {
-      const error = new Error(resjson.errors.toString())
-      throw error
+    if (!resjson.success && res.status != 404) {
+      throw new Error(resjson.errors)
     }
-
     return resjson
   }
 
   const { data, error } = useSWRImmutable(
-    `/api/pokemon?name=${searchText}&page=${currentPage}`,
+    `/api/pokemon?name=${filter.name}&sort=${filter.sort}&page=${currentPage}&limit=9`,
     fetchPokemons
   )
 
   return (
-    <Layout
-      headTittle="Pollito's stuff | Pokemon"
-      navTitle={'Pokemon 🕹️'}
-      introDescriptionRows={['Pues yo prefiero los tamales verdes']}
-      introSignature="James in Spanish Latin dub"
-      introHref="https://youtu.be/LR9vfQ1J2M4"
-      isThisHome={false}
-    >
-      <div className="flex justify-center">
-        <div className="my-6">
-          <input
-            type="text"
-            placeholder="Search a pokemon..."
-            className="text-black"
-            value={searchText}
-            onChange={(e) => filterPokemons(e)}
-          />
-        </div>
-      </div>
+    <>
+      <LayoutMetadata />
+      <Filter updateFilter={updateFilter} />
 
       <>
         {error ? (
@@ -69,22 +55,18 @@ const index = () => {
           <LoadingAnimation />
         ) : (
           <>
-            <div className="grid grid-cols-4 gap-4">
-              {data?.data?.map((it) => (
-                <CardSimple key={it.url} name={it.name} url={it.url} />
-              ))}
-            </div>
-            <div className="mt-4">
-              <PaginateNavbar
-                currentPage={data?.metadata?.page}
-                totalPages={data?.metadata?.totalPages}
-                handleClick={shouldUpdatePageNumber}
+            {data?.data?.length ? (
+              <ResultGrid
+                data={data}
+                shouldUpdatePageNumber={shouldUpdatePageNumber}
               />
-            </div>
+            ) : (
+              <NotFound name={filter.name} />
+            )}
           </>
         )}
       </>
-    </Layout>
+    </>
   )
 }
 

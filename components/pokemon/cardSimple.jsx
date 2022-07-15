@@ -1,14 +1,12 @@
 import Link from 'next/link'
 import Card from '../_utils/card'
-
-import zeroPad from '../../lib/funcs/zeroPad'
 import capitalize from '../../lib/funcs/capitalize'
 
 const CardSimple = ({ name, url }) => {
   const getPokeId = (url) => url.split('/')[6]
 
-  const getImgSrc = (id) => {
-    return `/img/pokemons/${zeroPad(id, 3)}.png`
+  const getImgSrc = (pokemonName) => {
+    return `https://img.pokemondb.net/sprites/home/normal/${pokemonName}.png`
   }
 
   return (
@@ -17,9 +15,10 @@ const CardSimple = ({ name, url }) => {
         <Card animate={true}>
           <div className="flex items-center justify-center p-4">
             <img
-              src={getImgSrc(getPokeId(url))}
+              src={getImgSrc(name)}
               alt="pokemon"
-              width={150}
+              width={200}
+              height={200}
             ></img>
           </div>
           <div className="px-6 py-4">

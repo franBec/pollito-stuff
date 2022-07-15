@@ -4,7 +4,7 @@ import {
   BsFillArrowDownCircleFill,
   BsFillArrowUpCircleFill,
 } from 'react-icons/bs'
-import FadeIn from '../fadeIn'
+import FadeIn from '../../layout/fadeIn'
 
 const AccordionItem = ({
   title,

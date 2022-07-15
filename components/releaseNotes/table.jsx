@@ -2,6 +2,8 @@ import { useState } from 'react'
 import PaginateNavbar from '../_utils/pagination/paginateNavbar'
 import useEventListener from '@use-it/event-listener'
 
+import Container from '../_utils/container'
+
 const Table = ({ data }) => {
   const itPerPage = 5
   const totalPages = Math.ceil(data.length / itPerPage)
@@ -31,7 +33,7 @@ const Table = ({ data }) => {
   useEventListener('keydown', handler)
 
   return (
-    <div className="container rounded-md bg-slate-800 bg-opacity-80 p-5">
+    <Container>
       <table className="table-fix w-full">
         <thead>
           <tr className="bg-slate-600 bg-opacity-50">
@@ -66,7 +68,7 @@ const Table = ({ data }) => {
           handleClick={shouldUpdatePageNumber}
         />
       </div>
-    </div>
+    </Container>
   )
 }
 

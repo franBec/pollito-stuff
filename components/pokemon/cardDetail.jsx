@@ -4,12 +4,11 @@ import Hr from '../_utils/hr'
 import { GiHealthNormal, GiBroadsword, GiCheckedShield } from 'react-icons/gi'
 import { AiFillThunderbolt } from 'react-icons/ai'
 
-import zeroPad from '../../lib/funcs/zeroPad'
 import capitalize from '../../lib/funcs/capitalize'
 
 const CardDetail = ({ data }) => {
-  const getImgSrc = (id) => {
-    return `/img/pokemons/${zeroPad(id, 3)}.png`
+  const getImgSrc = (name) => {
+    return `https://img.pokemondb.net/sprites/home/normal/${name}.png`
   }
 
   const getWikiLink = (name) => {
@@ -38,7 +37,12 @@ const CardDetail = ({ data }) => {
         <Hr />
         {/* PIC */}
         <div className="">
-          <img src={getImgSrc(data.id)} alt="pokemon" width={500}></img>
+          <img
+            src={getImgSrc(data.name)}
+            alt="pokemon"
+            width={300}
+            height={300}
+          ></img>
         </div>
         <Hr />
         {/* STATS */}
