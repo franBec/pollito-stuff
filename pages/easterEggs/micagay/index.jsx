@@ -30,7 +30,7 @@ const index = () => {
       <div className="flex flex-col items-center">
         <div>
           <img
-            src="/img/easterEggs/micagay/the-rock.gif"
+            src="/img/easterEggs/micagay/roca.gif"
             alt="gif"
             width="200"
           />
