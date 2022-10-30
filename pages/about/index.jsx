@@ -20,7 +20,16 @@ const index = () => {
           setActiveIndex={setActiveIndex}
         >
           <PersonalInfoCard />
-          <AboutMe />
+          {/* <AboutMe /> */}
+          <p className="bg-red-400">
+            This page is currently abandoned. Please check me out in my blog{' '}
+            <a
+              href="https://pollitodev.netlify.app/en/page/about/"
+              className="font-bold"
+            >
+              Pollito dev
+            </a>
+          </p>
         </AccordionItem>
         <AccordionItem
           title={'About this page'}

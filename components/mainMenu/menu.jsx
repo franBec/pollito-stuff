@@ -30,12 +30,12 @@ const Menu = () => {
             }
             goTo={'/randomStringGenerator'}
           />
-          <Card
+          {/* <Card
             icon={faPersonCircleQuestion}
             title={'Random Puntano Generator'}
             description={'Create a random person from San Luis... just because'}
             goTo={'/randomPuntanoGenerator'}
-          />
+          /> */}
           <Card
             icon={faGamepad}
             title={'Pokemon (only 1st Gen)'}

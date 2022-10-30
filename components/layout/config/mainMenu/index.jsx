@@ -21,11 +21,12 @@ const LayoutMetadata = () => {
     headTitle_setText('')
     navBar_setArray([])
     quote_setArray([
-      "I'm a little sick right now but I swear",
-      "When I'm ready I will fly us out of here",
+      "This was my first web page, and I'll love it forever",
+      'But right now, is abandoned',
+      'Click here, and visit my blog',
     ])
-    quote_setQuotee('This is home - Cavetown 🎵')
-    quote_setRedirect('https://youtu.be/ZM_Gamwxvtc')
+    quote_setQuotee('Pollito')
+    quote_setRedirect('https://pollitodev.netlify.app/')
     goBackButton_setRedirect(null)
   }, [])
 

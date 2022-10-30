@@ -5,10 +5,8 @@ const AboutThisPage = () => {
     <>
       <GenericCard title={'What is Pollito Stuff?'}>
         <p className="border-2 border-dashed p-2">
-          <span className="font-bold">TL;DR:</span> is a page where I challenge
-          myself to built little web apps using a technology stack that I'm not
-          that familiar with, to force me out of the confort zone and keep
-          learning. Also is a cool portfolio
+          <span className="font-bold">TL;DR:</span> This was my first web page.
+          Currently abandoned
         </p>
         <br />
         <p>
@@ -44,7 +42,7 @@ const AboutThisPage = () => {
           this repo yet)
         </p>
       </GenericCard>
-      <GenericCard title={'So.. what next?'}>
+      {/* <GenericCard title={'So.. what next?'}>
         <p>
           Well... idk. I just do whatever I feel like doing at the moment when
           it comes to this page
@@ -78,7 +76,7 @@ const AboutThisPage = () => {
           </li>
           <li>Keep improving the documentation</li>
         </ul>
-      </GenericCard>
+      </GenericCard> */}
     </>
   )
 }
